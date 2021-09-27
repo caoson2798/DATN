@@ -157,6 +157,10 @@ input:checked + .slider:before {
 .my-row{
   flex-wrap: nowrap !important;
 }
+
+.t-label{
+  text-overflow: ellipsis;
+}
 .line-style{
     width: 95%;
     height: 2px;
