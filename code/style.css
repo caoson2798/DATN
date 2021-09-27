@@ -137,12 +137,14 @@ input:checked + .slider:before {
 .body-left {
   height: 900px;
   border-right: 2px solid #ccc;
+  width: 320px;
+  /* float: left; */
 }
 .bg-logo {
   width: 100%;
 }
 .img-logo {
-  width: 75%;
+  width: 60%;
 }
 
 .body-map {
@@ -150,6 +152,10 @@ input:checked + .slider:before {
   background-color: brown;
   padding-left: 0px;
   margin-left: 0px;
+  width: 100%;
+}
+.my-row{
+  flex-wrap: nowrap !important;
 }
 .line-style{
     width: 95%;
