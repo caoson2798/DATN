@@ -8,12 +8,15 @@
 //     id: 'mapbox.streets'
 // }).addTo(mymap);
 // var mymap = L.map("mapid").setView([20.8434,106.8369], 10);
-var mymap = new L.Map('mapid').fitBounds([[21.0364,106.4881],[20.8434,106.8369]]);
+var mymap = new L.Map("mapid").fitBounds([
+  [21.0364, 106.4881],
+  [20.8434, 106.8369],
+]);
 L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(mymap);
-var marker = L.marker([21.0364,106.4881]).addTo(mymap);
+// var marker = L.marker([21.0364,106.4881]).addTo(mymap);
 // var circle = L.circle([51.508, -0.11], {
 //   color: "red",
 //   fillColor: "#f03",
@@ -27,5 +30,5 @@ mymap.on("click", (e) => {
     .setLatLng(e.latlng)
     .setContent("You clicked the map at " + e.latlng.toString())
     .openOn(mymap);
-    console.log(e.latlng.toString());
+  console.log(e.latlng.toString());
 });

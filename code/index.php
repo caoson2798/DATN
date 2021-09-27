@@ -8,7 +8,7 @@ require('header.php');
 ?>
 <div class="body">
   <div class="row">
-    <div class="col-sm-2 col-12 body-left">
+    <div class="col-sm-3 col-12 body-left">
       <div class="bg-logo d-flex justify-content-center">
         <img class="img-logo" src="img/logo.png" alt="" />
       </div>
@@ -95,7 +95,7 @@ require('header.php');
       </div>
     </div>
 
-    <div class="col-sm-10 col-12 body-map">
+    <div class="col-sm-9 col-12 body-map">
       <div id="mapid"></div>
     </div>
   </div>
