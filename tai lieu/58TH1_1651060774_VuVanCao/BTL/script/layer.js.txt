@@ -1,0 +1,51 @@
+  // Create leaflet map.
+  var map = new L.Map('map').fitBounds([[21.0364,106.4881],[20.8434,106.8369]]);
+
+  // Create & add OSM layer.
+  var osm = new L.TileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{
+    transparent: true,
+  }).addTo(map);
+  var url = 'http://localhost:8081/geoserver/ThuyNguyen/wms';
+  
+  var Cau = L.tileLayer.betterWms(url, {
+    layers: 'cau',
+    transparent: true,
+    format: 'image/png',
+    crs: L.CRS.EPSG4326
+  });
+  var Cong = L.tileLayer.betterWms(url, {
+    layers: 'cong',
+    transparent: true,
+    format: 'image/png',
+    crs: L.CRS.EPSG4326
+  });
+  var Dam = L.tileLayer.betterWms(url, {
+    layers: 'dam_polygon',
+    format: 'image/png',
+    transparent: true,
+    crs: L.CRS.EPSG4326
+  });
+  var Song = L.tileLayer.betterWms(url, {
+    layers: 'song_polygon',
+    transparent: true,
+    format: 'image/png',
+    crs: L.CRS.EPSG4326
+  });
+  var trambom = L.tileLayer.betterWms(url, {
+    layers: 'tram_bom',
+    transparent: true,
+    format: 'image/png',
+    crs: L.CRS.EPSG4326
+  });
+  var basemap = {
+    'OSM':osm
+  }
+  var overlay = {
+    "Cầu": Cau,
+    "Cống": Cong,
+    "Đầm": Dam,
+    "Sông": Song,
+    "Trạm bơm":trambom
+  }
+
+  L.control.layers(basemap,overlay).addTo(map);

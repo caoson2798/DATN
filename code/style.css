@@ -1,1 +1,159 @@
-#mapid { height: 1000px; width: 1000px; }
+html,
+body {
+  height: 100%;
+}
+#mapid {
+  height: 900px;
+  width: 100%;
+}
+.header {
+  height: 150px;
+  /* width: 100%; */
+  background-color: aqua;
+}
+.t-login {
+  font-size: 20px;
+}
+.body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  /* background-color: blue; */
+}
+.btn-search {
+  background-color: #ffb74d;
+  border-radius: 0px;
+}
+/* backgruop search */
+
+.input-search {
+  text-overflow: ellipsis;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon {
+  left: 0px;
+}
+.right-addon .glyphicon {
+  right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
+.btn-search:hover {
+  background-color: #ff7043;
+}
+/* end backgroup search */
+/* .form-search{
+    position: absolute;
+    right: 0;
+} */
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* swith toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: -6px;
+  right: 1px;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 0px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* end */
+
+.body-left {
+  height: 900px;
+  border-right: 2px solid #ccc;
+}
+.bg-logo {
+  width: 100%;
+}
+.img-logo {
+  width: 75%;
+}
+
+.body-map {
+  height: 100%;
+  background-color: brown;
+  padding-left: 0px;
+  margin-left: 0px;
+}
+.line-style{
+    width: 95%;
+    height: 2px;
+    background-color: #cccc;
+    margin: 8px 5px;
+}
