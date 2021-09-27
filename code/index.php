@@ -26,7 +26,7 @@ require('header.php');
       <!-- tab content -->
       <div class="tab-content" id="nav-tabContent">
         <!-- tab du lieu -->
-        <div class="tab-pane fade  <?php echo !isset($_POST['b-search']) ? 'show active' : '' ?>   px-3 py-3 mt-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="tab-pane fade  <?php echo !isset($_POST['b-search']) ? 'show active' : '' ?>   px-3 py-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
           <span style="font-size: 15px; color: rgba(90, 90, 90, 0.8); font-weight: bold;">Công trình hiện có</span>
           <div>
             <label class="switch ml-5 my-3">
