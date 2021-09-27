@@ -27,73 +27,95 @@ require('header.php');
       <div class="tab-content" id="nav-tabContent">
         <!-- tab du lieu -->
         <div class="tab-pane fade   <?php echo !isset($_POST['b-search']) ? 'show active' : '' ?>   px-3 py-3 ml-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          <span style="font-size: 15px; color: rgba(90, 90, 90, 0.8); font-weight: bold;">Công trình hiện có</span>
-          <div>
-            <label class="switch ml-5 my-3">
-              <input type="checkbox" />
-              <span class="slider round"></span>
-            </label>
-            <span class="mx-2">Cống</span>
+
+          <div  data-toggle="collapse" href="#collapseExample" aria-controls="collapseExample" style="width: 100%; position: relative; cursor: pointer;">
+            <i class="fas fa-list-alt mr-2"></i>
+            <a class="w-100" style="font-size: 15px; color: black;">Công trình hiện có</a>
+            <i id="icon-arrow" style="position: absolute; right: 0;top: 6px;" class="fas fa-chevron-down"></i>
+          </div>
+          <div class="collapse show" id="collapseExample">
+            <div>
+              <label class="switch ml-5 my-3">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+              <span class="mx-2">Cống</span>
+            </div>
+
+            <div>
+              <label class="switch ml-5 my-3">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+              <span class="mx-2">Trạm bơm</span>
+            </div>
+
+            <div>
+              <label class="switch ml-5 my-3">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+              <span class="mx-2">Kênh</span>
+            </div>
+
+            <div>
+              <label class="switch ml-5 my-3">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+              <span class="mx-2">Đê</span>
+            </div>
+            <div>
+              <label class="switch ml-5 my-3">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+
+              <span class="mx-2">Nhà máy nước sạch</span>
+            </div>
+
+            <div>
+              <label class="switch ml-5 my-3">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+              <span class="mx-2">Điểm nhận thải</span>
+            </div>
+
+            <div>
+              <label class="switch ml-5 my-3">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+              <span class="mx-2">Điểm xả thải</span>
+            </div>
+
           </div>
 
-          <div>
-            <label class="switch ml-5 my-3">
-              <input type="checkbox" />
-              <span class="slider round"></span>
-            </label>
-            <span class="mx-2">Trạm bơm</span>
+          <!-- <div class="line-style"></div> -->
+          <div data-toggle="collapse" href="#collapseExample1" aria-controls="collapseExample1" style="width: 100%; position: relative; cursor: pointer; margin-top: 5px;">
+            <i style="font-size: 13px;" class="far fa-map mr-2"></i>
+            <a class="w-100" style="font-size: 15px; color: black;">Bản đồ nền</a>
+            <i id="icon-arrow1" style="position: absolute; right: 0;top: 6px;" class="fas fa-chevron-right"></i>
           </div>
-
-          <div>
-            <label class="switch ml-5 my-3">
-              <input type="checkbox" />
-              <span class="slider round"></span>
-            </label>
-            <span class="mx-2">Kênh</span>
+          <div class="collapse" id="collapseExample1">
+            <div>
+              <label class="switch ml-5 my-3">
+                <input type="checkbox" checked />
+                <span class="slider round"></span>
+              </label>
+              <span class="mx-2">OSM</span>
+            </div>
           </div>
-
-          <div>
-            <label class="switch ml-5 my-3">
-              <input type="checkbox" />
-              <span class="slider round"></span>
-            </label>
-            <span class="mx-2">Đê</span>
-          </div>
-          <div>
-            <label class="switch ml-5 my-3">
-              <input type="checkbox" />
-              <span class="slider round"></span>
-            </label>
-        
-            <span class="mx-2">Nhà máy nước sạch</span>
-          </div>
-
-          <div>
-            <label class="switch ml-5 my-3">
-              <input type="checkbox" />
-              <span class="slider round"></span>
-            </label>
-            <span class="mx-2">Điểm nhận thải</span>
-          </div>
-
-          <div>
-            <label class="switch ml-5 my-3">
-              <input type="checkbox" />
-              <span class="slider round"></span>
-            </label>
-            <span class="mx-2">Điểm xả thải</span>
-          </div>
-
-          <div class="line-style"></div>
           <!-- ban ddo nen osm -->
-          <span style="font-size: 15px; color: rgba(90, 90, 90, 0.8); font-weight: bold;">Bản đồ nền</span>
+          <!-- <span class="d-block" style="font-size: 15px; color: rgba(90, 90, 90, 0.8); font-weight: bold;">Bản đồ nền</span>
           <div>
             <label class="switch ml-5 my-3">
               <input type="checkbox" checked />
               <span class="slider round"></span>
             </label>
             <span class="mx-2">OSM</span>
-          </div>
+          </div> -->
 
         </div>
 
