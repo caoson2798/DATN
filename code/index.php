@@ -64,7 +64,16 @@ require('header.php');
               <input type="checkbox" />
               <span class="slider round"></span>
             </label>
-            <span class="mx-2 t-label">Điểm nhận thải</span>
+        
+            <span class="mx-2">Nhà máy nước sạch</span>
+          </div>
+
+          <div>
+            <label class="switch ml-5 my-3">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <span class="mx-2">Điểm nhận thải</span>
           </div>
 
           <div>

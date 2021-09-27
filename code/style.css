@@ -137,7 +137,7 @@ input:checked + .slider:before {
 .body-left {
   height: 900px;
   border-right: 2px solid #ccc;
-  width: 320px;
+  width: 400px;
   /* float: left; */
 }
 .bg-logo {
