@@ -9,8 +9,8 @@
 // }).addTo(mymap);
 // var mymap = L.map("mapid").setView([20.8434,106.8369], 10);
 var mymap = new L.Map("mapid").fitBounds([
-  [569026.1875, 2279361.75],
-  [586319.5625, 2295273.25],
+  [21.0364, 106.4881],
+  [20.8434, 106.8369],
 ]);
 L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
   attribution:
@@ -71,7 +71,3 @@ $("#collapseExample1").on("hide.bs.collapse", function (e) {
       .removeClass("fa-chevron-down");
   }
 });
-
-
-
-
