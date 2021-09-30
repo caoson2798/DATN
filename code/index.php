@@ -28,7 +28,7 @@ require('header.php');
         <!-- tab du lieu -->
         <div class="tab-pane fade   <?php echo !isset($_POST['b-search']) ? 'show active' : '' ?>   px-3 py-3 ml-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-          <div  data-toggle="collapse" href="#collapseExample" aria-controls="collapseExample" style="width: 100%; position: relative; cursor: pointer;">
+          <div data-toggle="collapse" href="#collapseExample" aria-controls="collapseExample" style="width: 100%; position: relative; cursor: pointer;">
             <i class="fas fa-list-alt mr-2"></i>
             <a class="w-100" style="font-size: 15px; color: black;">Công trình hiện có</a>
             <i id="icon-arrow" style="position: absolute; right: 0;top: 6px;" class="fas fa-chevron-down"></i>
@@ -36,7 +36,15 @@ require('header.php');
           <div class="collapse show" id="collapseExample">
             <div>
               <label class="switch ml-5 my-3">
-                <input type="checkbox" />
+                <input id="chk-cong-duoi-de" type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+              <span class="mx-2">Cống dưới đê</span>
+            </div>
+
+            <div>
+              <label class="switch ml-5 my-3">
+                <input id="chk-cong" type="checkbox" />
                 <span class="slider round"></span>
               </label>
               <span class="mx-2">Cống</span>
@@ -44,7 +52,7 @@ require('header.php');
 
             <div>
               <label class="switch ml-5 my-3">
-                <input type="checkbox" />
+                <input id="chk-trambom" type="checkbox" />
                 <span class="slider round"></span>
               </label>
               <span class="mx-2">Trạm bơm</span>
@@ -52,7 +60,7 @@ require('header.php');
 
             <div>
               <label class="switch ml-5 my-3">
-                <input type="checkbox" />
+                <input id="chk-kenh" type="checkbox" />
                 <span class="slider round"></span>
               </label>
               <span class="mx-2">Kênh</span>
@@ -60,14 +68,14 @@ require('header.php');
 
             <div>
               <label class="switch ml-5 my-3">
-                <input type="checkbox" />
+                <input id="chk-de" type="checkbox" />
                 <span class="slider round"></span>
               </label>
               <span class="mx-2">Đê</span>
             </div>
             <div>
               <label class="switch ml-5 my-3">
-                <input type="checkbox" />
+                <input id="chk-nhamaynuocsach" type="checkbox" />
                 <span class="slider round"></span>
               </label>
 
@@ -76,7 +84,7 @@ require('header.php');
 
             <div>
               <label class="switch ml-5 my-3">
-                <input type="checkbox" />
+                <input id="chk-diemnhanthai" type="checkbox" />
                 <span class="slider round"></span>
               </label>
               <span class="mx-2">Điểm nhận thải</span>
@@ -84,7 +92,7 @@ require('header.php');
 
             <div>
               <label class="switch ml-5 my-3">
-                <input type="checkbox" />
+                <input id="chk-diemxathai" type="checkbox" />
                 <span class="slider round"></span>
               </label>
               <span class="mx-2">Điểm xả thải</span>
@@ -136,7 +144,11 @@ require('header.php');
     </div> -->
 <!-- js -->
 <script src="js/script.js"></script>
+
 <script src="bootrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="lib/L.Geoserver.js"></script>
+<script src="js/map.js"></script>
 </body>
 
 </html>

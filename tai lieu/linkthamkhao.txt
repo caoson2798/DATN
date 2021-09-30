@@ -2,7 +2,7 @@ https://gadm.org/download_country_v3.html
 http://download.geofabrik.de/
 https://gis.hcmuaf.edu.vn/data/file/KhoaLuanTotNghiep_DH10GI/DH10GE_Tran_Thi_Kim_Lien.pdf
 https://thuyloibentre.com/map/view/
-
+https://www.npmjs.com/package/leaflet-geoserver-request
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
