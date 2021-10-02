@@ -62,7 +62,7 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
       console.log(err);
       return;
     } // do nothing if there's an error
-    //   alert(content)
+    alert(content);
     content = JSON.parse(content);
     //   console.log(content);
     //   t1 = content;

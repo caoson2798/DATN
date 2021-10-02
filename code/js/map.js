@@ -1,3 +1,23 @@
+
+
+var Cong1 = L.Geoserver.wfs("http://localhost:8080/geoserver/DATN/wfs", {
+  layers: "DATN:cong_point",
+  style: {
+    color: "#ff7800",
+    weight: 5,
+    opacity: 0.65,
+  },
+  onEachFeature: function (feature, layer) {
+    console.log(feature);
+    layer.bindPopup(
+      feature.properties ? feature.properties["objectid"] + "" : "blo"
+    );
+  },
+  // CQL_FILTER: "district='Syangja'",
+});
+
+
+
 var mymap = L.map("mapid", {
   zoomControl: true,
   maxZoom: 50,
@@ -21,49 +41,89 @@ var style= {
   
 }
 //cac layer
-var CongDuoiDe1 = L.Geoserver.wfs("http://localhost:8080/geoserver/DATN/wfs", {
-  layers: "DATN:cong_duoi_de_point",
-  style: {
-    color: "#ff7800",
-    weight: 5,
-    opacity: 0.65,
-  },
-  onEachFeature: function (feature, layer) {
-    console.log(feature);
-    layer.bindPopup(
-      feature.properties ? feature.properties["objectid"] + "" : "blo"
-    );
-  },
-  // CQL_FILTER: "district='Syangja'",
-});
+
 var CongDuoiDe = L.tileLayer.betterWms(url, {
-  layers: 'cong_duoi_de_point',
+  layers: 'DATN:cong_duoi_de_point',
   transparent: true,
   format: 'image/png',
   crs: L.CRS.EPSG4326
 });
 
-var Cong = L.Geoserver.wms(url, {
-  layers: "DATN:cong_point",
+var Cong = L.tileLayer.betterWms(url, {
+  layers: 'DATN:cong_point',
+  transparent: true,
+  format: 'image/png',
+  crs: L.CRS.EPSG4326
 });
-var TramBom = L.Geoserver.wms(url, {
-  layers: "DATN:tram_bom_point",
+
+var TramBom = L.tileLayer.betterWms(url, {
+  layers: 'DATN:tram_bom_point',
+  transparent: true,
+  format: 'image/png',
+  crs: L.CRS.EPSG4326
 });
-var Kenh = L.Geoserver.wms(url, {
-  layers: "kenh_polyline",
+
+var Kenh = L.tileLayer.betterWms(url, {
+  layers: 'kenh_polyline',
+  transparent: true,
+  format: 'image/png',
+  crs: L.CRS.EPSG4326
 });
-var De = L.Geoserver.wms(url, {
-  layers: "DATN:de_tw",
+
+var De = L.tileLayer.betterWms(url, {
+  layers: 'de_tw',
+  transparent: true,
+  format: 'image/png',
+  crs: L.CRS.EPSG4326
 });
-var NhaMayNuocSach = L.Geoserver.wms(url, {
-  layers: "DATN:nha_may_nnuoc_sacch_point",
+
+var NhaMayNuocSach = L.tileLayer.betterWms(url, {
+  layers: 'nha_may_nnuoc_sacch_point',
+  transparent: true,
+  format: 'image/png',
+  crs: L.CRS.EPSG4326
 });
-var DiemNhanThai = L.Geoserver.wms(url, {
-  layers: "DATN:diem_nhan_thai_point",
+
+var DiemNhanThai = L.tileLayer.betterWms(url, {
+  layers: 'DATN:diem_nhan_thai_point',
+  transparent: true,
+  format: 'image/png',
+  crs: L.CRS.EPSG4326
 });
-var DiemXaThai = L.Geoserver.wms(url, {
-  layers: "DATN:diem_xa_thai_point",
+
+var DiemXaThai = L.tileLayer.betterWms(url, {
+  layers: 'DATN:diem_xa_thai_point',
+  transparent: true,
+  format: 'image/png',
+  crs: L.CRS.EPSG4326
 });
+
+
+
+
+
+
+// var Cong = L.Geoserver.wms(url, {
+//   layers: "DATN:cong_point",
+// });
+// var TramBom = L.Geoserver.wms(url, {
+//   layers: "DATN:tram_bom_point",
+// });
+// var Kenh = L.Geoserver.wms(url, {
+//   layers: "kenh_polyline",
+// });
+// var De = L.Geoserver.wms(url, {
+//   layers: "DATN:de_tw",
+// });
+// var NhaMayNuocSach = L.Geoserver.wms(url, {
+//   layers: "DATN:nha_may_nnuoc_sacch_point",
+// });
+// var DiemNhanThai = L.Geoserver.wms(url, {
+//   layers: "DATN:diem_nhan_thai_point",
+// });
+// var DiemXaThai = L.Geoserver.wms(url, {
+//   layers: "DATN:diem_xa_thai_point",
+// });
 
 // xu ly checkbox layer
 var checkboxElems = document.querySelectorAll("input[type='checkbox']");
@@ -79,30 +139,36 @@ function xulycheck(e) {
   if (e.target.checked) {
     switch (idChk) {
       case "chk-cong-duoi-de":
-        mymap.fitBounds(CongDuoiDe1.getBounds());
+        // mymap.fitBounds(bouds.CongDuoiDe1.getBounds());
         CongDuoiDe.addTo(mymap);
         // CongDuoiDe.bindPopup(popup).openPopup();
         break;
       case "chk-cong":
-        mymap.fitBounds(CongDuoiDe1.getBounds());
+        mymap.fitBounds(Cong1.getBounds());
         Cong.addTo(mymap);
         break;
       case "chk-trambom":
+        // mymap.fitBounds(TramBom1.getBounds());
         TramBom.addTo(mymap);
         break;
       case "chk-kenh":
+        // mymap.fitBounds(Kenh1.getBounds());
         Kenh.addTo(mymap);
         break;
       case "chk-de":
+        // mymap.fitBounds(De1.getBounds());
         De.addTo(mymap);
         break;
       case "chk-nhamaynuocsach":
+        // mymap.fitBounds(NhaMayNuocSach1.getBounds());
         NhaMayNuocSach.addTo(mymap);
         break;
       case "chk-diemnhanthai":
+        // mymap.fitBounds(DiemNhanThai1.getBounds());
         DiemNhanThai.addTo(mymap);
         break;
       case "chk-diemxathai":
+        // mymap.fitBounds(DiemXaThai1.getBounds());
         DiemXaThai.addTo(mymap);
         break;
       default:
