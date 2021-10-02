@@ -1,7 +1,7 @@
 var mymap = L.map("mapid", {
   zoomControl: true,
-  maxZoom: 25,
-  minZoom: 1,
+  maxZoom: 50,
+  minZoom: 3,
 }).fitBounds([
   [20.61142322792599, 106.38637028789354],
   [20.778631818033, 106.6135772544507],
@@ -16,19 +16,31 @@ var OSM = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
 
 mymap.addLayer(OSM);
 
-var popup = L.popup();
-mymap.on("click", (e) => {
-  popup
-    .setLatLng(e.latlng)
-    .setContent("You clicked the map at " + e.latlng.toString())
-    .openOn(mymap);
-  console.log(e.latlng.toString());
-});
 var url = "http://localhost:8080/geoserver/DATN/wms";
-
+var style= {
+  
+}
 //cac layer
-var CongDuoiDe = L.Geoserver.wms(url, {
+var CongDuoiDe1 = L.Geoserver.wfs("http://localhost:8080/geoserver/DATN/wfs", {
   layers: "DATN:cong_duoi_de_point",
+  style: {
+    color: "#ff7800",
+    weight: 5,
+    opacity: 0.65,
+  },
+  onEachFeature: function (feature, layer) {
+    console.log(feature);
+    layer.bindPopup(
+      feature.properties ? feature.properties["objectid"] + "" : "blo"
+    );
+  },
+  // CQL_FILTER: "district='Syangja'",
+});
+var CongDuoiDe = L.tileLayer.betterWms(url, {
+  layers: 'cong_duoi_de_point',
+  transparent: true,
+  format: 'image/png',
+  crs: L.CRS.EPSG4326
 });
 
 var Cong = L.Geoserver.wms(url, {
@@ -54,20 +66,25 @@ var DiemXaThai = L.Geoserver.wms(url, {
 });
 
 // xu ly checkbox layer
-
 var checkboxElems = document.querySelectorAll("input[type='checkbox']");
 for (var i = 0; i < checkboxElems.length; i++) {
   checkboxElems[i].addEventListener("click", xulycheck);
 }
+
+var popup = L.popup().setContent("I am a standalone popup.");
+
 function xulycheck(e) {
   var idChk = e.target.id;
   // var chkCong=document.getElementById("chk-cong");
   if (e.target.checked) {
     switch (idChk) {
       case "chk-cong-duoi-de":
+        mymap.fitBounds(CongDuoiDe1.getBounds());
         CongDuoiDe.addTo(mymap);
+        // CongDuoiDe.bindPopup(popup).openPopup();
         break;
       case "chk-cong":
+        mymap.fitBounds(CongDuoiDe1.getBounds());
         Cong.addTo(mymap);
         break;
       case "chk-trambom":
