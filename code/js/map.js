@@ -8,7 +8,7 @@ var Cong1 = L.Geoserver.wfs("http://localhost:8080/geoserver/DATN/wfs", {
     opacity: 0.65,
   },
   onEachFeature: function (feature, layer) {
-    console.log(feature);
+    // console.log(feature);
     layer.bindPopup(
       feature.properties ? feature.properties["objectid"] + "" : "blo"
     );
@@ -43,21 +43,21 @@ var style= {
 //cac layer
 
 var CongDuoiDe = L.tileLayer.betterWms(url, {
-  layers: 'DATN:cong_duoi_de_point',
+  layers: 'cong_duoi_de_point',
   transparent: true,
   format: 'image/png',
   crs: L.CRS.EPSG4326
 });
 
 var Cong = L.tileLayer.betterWms(url, {
-  layers: 'DATN:cong_point',
+  layers: 'cong_point',
   transparent: true,
   format: 'image/png',
   crs: L.CRS.EPSG4326
 });
 
 var TramBom = L.tileLayer.betterWms(url, {
-  layers: 'DATN:tram_bom_point',
+  layers: 'tram_bom_point',
   transparent: true,
   format: 'image/png',
   crs: L.CRS.EPSG4326
@@ -78,21 +78,21 @@ var De = L.tileLayer.betterWms(url, {
 });
 
 var NhaMayNuocSach = L.tileLayer.betterWms(url, {
-  layers: 'nha_may_nnuoc_sacch_point',
+  layers: 'nha_may_nuoc_sach_point',
   transparent: true,
   format: 'image/png',
   crs: L.CRS.EPSG4326
 });
 
 var DiemNhanThai = L.tileLayer.betterWms(url, {
-  layers: 'DATN:diem_nhan_thai_point',
+  layers: 'diem_nhan_thai_point',
   transparent: true,
   format: 'image/png',
   crs: L.CRS.EPSG4326
 });
 
 var DiemXaThai = L.tileLayer.betterWms(url, {
-  layers: 'DATN:diem_xa_thai_point',
+  layers: 'diem_xa_thai_point',
   transparent: true,
   format: 'image/png',
   crs: L.CRS.EPSG4326
@@ -103,27 +103,6 @@ var DiemXaThai = L.tileLayer.betterWms(url, {
 
 
 
-// var Cong = L.Geoserver.wms(url, {
-//   layers: "DATN:cong_point",
-// });
-// var TramBom = L.Geoserver.wms(url, {
-//   layers: "DATN:tram_bom_point",
-// });
-// var Kenh = L.Geoserver.wms(url, {
-//   layers: "kenh_polyline",
-// });
-// var De = L.Geoserver.wms(url, {
-//   layers: "DATN:de_tw",
-// });
-// var NhaMayNuocSach = L.Geoserver.wms(url, {
-//   layers: "DATN:nha_may_nnuoc_sacch_point",
-// });
-// var DiemNhanThai = L.Geoserver.wms(url, {
-//   layers: "DATN:diem_nhan_thai_point",
-// });
-// var DiemXaThai = L.Geoserver.wms(url, {
-//   layers: "DATN:diem_xa_thai_point",
-// });
 
 // xu ly checkbox layer
 var checkboxElems = document.querySelectorAll("input[type='checkbox']");
@@ -144,7 +123,7 @@ function xulycheck(e) {
         // CongDuoiDe.bindPopup(popup).openPopup();
         break;
       case "chk-cong":
-        mymap.fitBounds(Cong1.getBounds());
+        // mymap.fitBounds(Cong1.getBounds());
         Cong.addTo(mymap);
         break;
       case "chk-trambom":
