@@ -1,20 +1,20 @@
 
 
-var Cong1 = L.Geoserver.wfs("http://localhost:8080/geoserver/DATN/wfs", {
-  layers: "DATN:cong_point",
-  style: {
-    color: "#ff7800",
-    weight: 5,
-    opacity: 0.65,
-  },
-  onEachFeature: function (feature, layer) {
-    // console.log(feature);
-    layer.bindPopup(
-      feature.properties ? feature.properties["objectid"] + "" : "blo"
-    );
-  },
-  // CQL_FILTER: "district='Syangja'",
-});
+// var Cong1 = L.Geoserver.wfs("http://localhost:8080/geoserver/DATN/wfs", {
+//   layers: "DATN:cong_point",
+//   style: {
+//     color: "#ff7800",
+//     weight: 5,
+//     opacity: 0.65,
+//   },
+//   onEachFeature: function (feature, layer) {
+//     // console.log(feature);
+//     layer.bindPopup(
+//       feature.properties ? feature.properties["objectid"] + "" : "blo"
+//     );
+//   },
+//   // CQL_FILTER: "district='Syangja'",
+// });
 
 
 
