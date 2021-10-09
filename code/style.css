@@ -3,7 +3,7 @@ body {
   height: 100%;
 }
 #mapid {
-  height: 900px;
+  height: 700px;
   width: 100%;
 }
 .header {
@@ -135,7 +135,7 @@ input:checked + .slider:before {
 /* end */
 
 .body-left {
-  height: 900px;
+  height: 700px;
   border-right: 2px solid #ccc;
   width: 400px;
   /* float: left; */
@@ -144,7 +144,7 @@ input:checked + .slider:before {
   width: 100%;
 }
 .img-logo {
-  width: 60%;
+  width: 50%;
 }
 
 .body-map {
