@@ -63,7 +63,7 @@ if(isset($_POST['b-search'])){
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand text-light t-title" href="#">
+                <a class="navbar-brand text-light t-title" href="index.php">
                     <h4>Vĩnh Bảo</h4>
                 </a>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">

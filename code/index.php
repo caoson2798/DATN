@@ -138,9 +138,12 @@ require('header.php');
           ?>
             <?php
             while ($row = pg_fetch_assoc($result)) {
+              $geo = $row['geo'];
+              $json = json_encode($row);
+              // echo $json;
             ?>
               <div class="d-flex my-2 mr-3" style="width: 100%; height: 60px; overflow: hidden;text-overflow: ellipsis;">
-                <a class="align-items-center w-100 h-100 pt-3" href="#">
+                <a id="item_search" onclick='return handleMove(<?php echo $json?>)' href="javascript:;" class="align-items-center w-100 h-100 pt-3">
                   <i style="color: #2196F3; float: left; font-size: 30px;" class="fas fa-map-marker-alt ml-5 h-100"></i>
                   <b style=" max-height: 60px;" class="mx-2"><?php echo $row['name'] ?></b>
                   <!-- <hr class="mx-5"> -->

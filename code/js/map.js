@@ -1,23 +1,5 @@
 
 
-// var Cong1 = L.Geoserver.wfs("http://localhost:8080/geoserver/DATN/wfs", {
-//   layers: "DATN:cong_point",
-//   style: {
-//     color: "#ff7800",
-//     weight: 5,
-//     opacity: 0.65,
-//   },
-//   onEachFeature: function (feature, layer) {
-//     // console.log(feature);
-//     layer.bindPopup(
-//       feature.properties ? feature.properties["objectid"] + "" : "blo"
-//     );
-//   },
-//   // CQL_FILTER: "district='Syangja'",
-// });
-
-
-
 var mymap = L.map("mapid", {
   zoomControl: true,
   maxZoom: 50,
@@ -27,11 +9,31 @@ var mymap = L.map("mapid", {
   [20.778631818033, 106.6135772544507],
 ]);
 
+
+// ban do nen
+googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+satellite = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
 var OSM = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
   zIndex: 1,
   transparent: true,
+});
+
+googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
 });
 
 mymap.addLayer(OSM);
@@ -184,4 +186,21 @@ function xulycheck(e) {
         alert("ko co j het tron a");
     }
   }
+}
+
+
+
+// var itemSearch= document.getElementById("item_search");
+function handleMove(a){
+
+  // alert(a.getAttribute("data-variable"));
+  var json= JSON.parse(a.geo);
+  console.log(json)
+  mymap.setView(new L.LatLng(json.coordinates[1], json.coordinates[0]),13);
+  var marker = L.marker([json.coordinates[1], json.coordinates[0]], {
+    elevation: 260.0,
+    title: "Transamerica Pyramid"
+  }).addTo(mymap);
+
+  marker.bindPopup(a.name).openPopup();
 }
