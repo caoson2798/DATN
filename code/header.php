@@ -10,10 +10,10 @@ if (isset($_GET['typeSearch'])) {
     $typeSearch = "cong";
 }
 
-if(isset($_POST['b-search'])){
+if (isset($_POST['b-search'])) {
     $key = $_POST['key-search'];
     switch ($typeSearch) {
-        
+
         case "cong":
             $result = searchByCong($key);
             break;
@@ -30,7 +30,6 @@ if(isset($_POST['b-search'])){
             $result = searchByDiemXaThai($key);
             break;
         default:
-    
     }
 }
 ?>
@@ -57,61 +56,64 @@ if(isset($_POST['b-search'])){
 </head>
 
 <body>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand text-light t-title" href="index.php">
-                    <h4>Vĩnh Bảo</h4>
-                </a>
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link text-light" href="#">Giới thiệu</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dữ liệu
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Cầu</a>
-                            <a class="dropdown-item" href="#">Cống</a>
-                            <a class="dropdown-item" href="#">Đầm</a>
-                            <a class="dropdown-item" href="#">Sông</a>
-                            <a class="dropdown-item" href="#">Trạm bơm</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Biểu đồ</a>
-                    </li>
-                </ul>
-                <form action="index.php?typeSearch=<?php echo $typeSearch?>" method="post" class="form-inline my-2 my-lg-0">
-                    <div class="inner-addon left-addon">
-                        <i class="glyphicon fas fa-search"></i>
-                        <input value="<?php echo isset($key)? $key : ""?>" name="key-search" required placeholder="nhập từ khóa" type="text" class="form-control input-search" />
-                    </div>
-                    <button class="btn btn-search my-2 my-sm-0" name="b-search">
-                        Tìm kiếm
-                    </button>
-                    <div class="dropdown show">
-                        <a style="background-color: #FF7043; border-top-left-radius:0px ;" class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i style="color:white;" class="fas fa-cog"></i>
-                        </a>
+    <div style="display: flex; flex-direction: column;height: 100%;">
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item <?php echo $typeSearch == "cong" ?  "active" : "" ?>" href="index.php?typeSearch=cong">Cống</a>
-                            <a class="dropdown-item <?php echo $typeSearch == "trambom" ?  "active" : "" ?> " href="index.php?typeSearch=trambom">Trạm bơm</a>
-                            <a class="dropdown-item <?php echo $typeSearch == "nmns" ?  "active" : "" ?>" href="index.php?typeSearch=nmns">Nhà máy nước sạch</a>
-                            <a class="dropdown-item  <?php echo $typeSearch == "diennhanthai" ?  "active" : "" ?>" href="index.php?typeSearch=diennhanthai">Điểm Nhận Thải</a>
-                            <a class="dropdown-item <?php echo $typeSearch == "diemxathai" ?  "active" : "" ?> " href="index.php?typeSearch=diemxathai">Điểm xả thải</a>
+
+        <div style="width: 100%;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <a class="navbar-brand text-light t-title" href="index.php">
+                        <h4>Vĩnh Bảo</h4>
+                    </a>
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link text-light" href="#">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dữ liệu
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Cầu</a>
+                                <a class="dropdown-item" href="#">Cống</a>
+                                <a class="dropdown-item" href="#">Đầm</a>
+                                <a class="dropdown-item" href="#">Sông</a>
+                                <a class="dropdown-item" href="#">Trạm bơm</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#">Biểu đồ</a>
+                        </li>
+                    </ul>
+                    <form action="index.php?typeSearch=<?php echo $typeSearch ?>" method="post" class="form-inline my-2 my-lg-0">
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon fas fa-search"></i>
+                            <input value="<?php echo isset($key) ? $key : "" ?>" name="key-search" required placeholder="nhập từ khóa" type="text" class="form-control input-search" />
                         </div>
-                    </div>
-                </form>
-                <a href="#">
-                    <i class="fas fa-sign-in-alt text-light mx-5">
-                        <span class="t-login">Login</span></i>
-                </a>
-            </div>
-        </nav>
-    </div>
+                        <button class="btn btn-search my-2 my-sm-0" name="b-search">
+                            Tìm kiếm
+                        </button>
+                        <div class="dropdown show">
+                            <a style="background-color: #FF7043; border-top-left-radius:0px ;" class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i style="color:white;" class="fas fa-cog"></i>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item <?php echo $typeSearch == "cong" ?  "active" : "" ?>" href="index.php?typeSearch=cong">Cống</a>
+                                <a class="dropdown-item <?php echo $typeSearch == "trambom" ?  "active" : "" ?> " href="index.php?typeSearch=trambom">Trạm bơm</a>
+                                <a class="dropdown-item <?php echo $typeSearch == "nmns" ?  "active" : "" ?>" href="index.php?typeSearch=nmns">Nhà máy nước sạch</a>
+                                <a class="dropdown-item  <?php echo $typeSearch == "diennhanthai" ?  "active" : "" ?>" href="index.php?typeSearch=diennhanthai">Điểm Nhận Thải</a>
+                                <a class="dropdown-item <?php echo $typeSearch == "diemxathai" ?  "active" : "" ?> " href="index.php?typeSearch=diemxathai">Điểm xả thải</a>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="#">
+                        <i class="fas fa-sign-in-alt text-light mx-5">
+                            <span class="t-login">Login</span></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
