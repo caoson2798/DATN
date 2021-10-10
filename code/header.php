@@ -110,7 +110,7 @@ if (isset($_POST['b-search'])) {
                             </div>
                         </div>
                     </form>
-                    <a href="#">
+                    <a href="login.php">
                         <i class="fas fa-sign-in-alt text-light mx-5">
                             <span class="t-login">Login</span></i>
                     </a>
