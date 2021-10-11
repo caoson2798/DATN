@@ -1,9 +1,13 @@
 <?php
+ob_start();
+session_start();
 require "database/cong.php";
 require "database/nmns.php";
 require "database/trambom.php";
 require "database/diemnhanthai.php";
 require "database/diemxathai.php";
+
+
 if (isset($_GET['typeSearch'])) {
     $typeSearch = $_GET['typeSearch'];
 } else {
@@ -110,10 +114,46 @@ if (isset($_POST['b-search'])) {
                             </div>
                         </div>
                     </form>
-                    <a href="login.php">
-                        <i class="fas fa-sign-in-alt text-light mx-5">
-                            <span class="t-login">Login</span></i>
-                    </a>
+                    <?php
+                    if (isset($_SESSION['user'])) {
+                    ?>
+                        <div class="mx-3 d-flex flex-row">
+                            <span class="text-light">Xin Chào, <b class="text-light"><?php echo $_SESSION['user']["name"] ?></b></span>
+                            <a data-toggle="modal" data-target="#confirmLogout" href="javascript;">
+                                <i style="font-size: 20px;" class="fas fa-sign-out-alt text-light mx-3"></i>
+                            </a>
+                        </div>
+
+                    <?php
+                    } else {
+                    ?>
+                        <a href="login.php">
+                            <i class="fas fa-sign-in-alt text-light mx-5">
+                                <span class="t-login">Login</span></i>
+                        </a>
+                    <?php
+                    }
+                    ?>
+
                 </div>
             </nav>
+            <div class="modal fade" id="confirmLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn đăng xuất không ????
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                            <a href="logout.php" class="btn btn-primary">Có</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
