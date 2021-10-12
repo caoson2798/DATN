@@ -76,21 +76,27 @@ if (isset($_POST['b-search'])) {
                         <li class="nav-item active">
                             <a class="nav-link text-light" href="#">Giới thiệu</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dữ liệu
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Cầu</a>
-                                <a class="dropdown-item" href="#">Cống</a>
-                                <a class="dropdown-item" href="#">Đầm</a>
-                                <a class="dropdown-item" href="#">Sông</a>
-                                <a class="dropdown-item" href="#">Trạm bơm</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="#">Biểu đồ</a>
-                        </li>
+                        <?php
+                        if (isset($_SESSION['user'])) {
+                        ?>
+                            <li disable class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dữ liệu
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Cầu</a>
+                                    <a class="dropdown-item" href="#">Cống</a>
+                                    <a class="dropdown-item" href="#">Đầm</a>
+                                    <a class="dropdown-item" href="#">Sông</a>
+                                    <a class="dropdown-item" href="#">Trạm bơm</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#">Biểu đồ</a>
+                            </li>
+                        <?php
+                        }
+                        ?>
                     </ul>
                     <form action="index.php?typeSearch=<?php echo $typeSearch ?>" method="post" class="form-inline my-2 my-lg-0">
                         <div class="inner-addon left-addon">
