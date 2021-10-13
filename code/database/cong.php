@@ -7,3 +7,16 @@
         $result = pg_query($dbconn, $sql);
         return $result;
     }
+
+    function getAllData(){
+        require("conn.php");
+        $sql= "SELECT * from cong_point";
+        $result = pg_query($dbconn,$sql);
+        return $result;
+    } 
+    function getDataLimit($limit, $start){
+        require("conn.php");
+        $sql= "SELECT * FROM cong_point ORDER BY gid LIMIT $limit OFFSET $start";
+        $result = pg_query($dbconn,$sql);
+        return $result;
+    }

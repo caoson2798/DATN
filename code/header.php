@@ -36,6 +36,10 @@ if (isset($_POST['b-search'])) {
         default:
     }
 }
+// echo basename($_SERVER['PHP_SELF']);
+// if(!isset($_GET["tabdt"])){
+
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,11 +88,13 @@ if (isset($_POST['b-search'])) {
                                     Dữ liệu
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Cầu</a>
-                                    <a class="dropdown-item" href="#">Cống</a>
-                                    <a class="dropdown-item" href="#">Đầm</a>
-                                    <a class="dropdown-item" href="#">Sông</a>
-                                    <a class="dropdown-item" href="#">Trạm bơm</a>
+                                    <a class="dropdown-item" href="tabCong.php?tabdt=cong">Cống</a>
+                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Trạm bơm</a>
+                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Kênh</a>
+                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Đê</a>
+                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Nhà máy nước sạch</a>
+                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Điểm nhận thải</a>
+                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Điểm xả thải</a>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -98,28 +104,36 @@ if (isset($_POST['b-search'])) {
                         }
                         ?>
                     </ul>
-                    <form action="index.php?typeSearch=<?php echo $typeSearch ?>" method="post" class="form-inline my-2 my-lg-0">
-                        <div class="inner-addon left-addon">
-                            <i class="glyphicon fas fa-search"></i>
-                            <input value="<?php echo isset($key) ? $key : "" ?>" name="key-search" required placeholder="nhập từ khóa" type="text" class="form-control input-search" />
-                        </div>
-                        <button class="btn btn-search my-2 my-sm-0" name="b-search">
-                            Tìm kiếm
-                        </button>
-                        <div class="dropdown show">
-                            <a style="background-color: #FF7043; border-top-left-radius:0px ;" class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i style="color:white;" class="fas fa-cog"></i>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item <?php echo $typeSearch == "cong" ?  "active" : "" ?>" href="index.php?typeSearch=cong">Cống</a>
-                                <a class="dropdown-item <?php echo $typeSearch == "trambom" ?  "active" : "" ?> " href="index.php?typeSearch=trambom">Trạm bơm</a>
-                                <a class="dropdown-item <?php echo $typeSearch == "nmns" ?  "active" : "" ?>" href="index.php?typeSearch=nmns">Nhà máy nước sạch</a>
-                                <a class="dropdown-item  <?php echo $typeSearch == "diennhanthai" ?  "active" : "" ?>" href="index.php?typeSearch=diennhanthai">Điểm Nhận Thải</a>
-                                <a class="dropdown-item <?php echo $typeSearch == "diemxathai" ?  "active" : "" ?> " href="index.php?typeSearch=diemxathai">Điểm xả thải</a>
+                    <?php
+                    if (basename($_SERVER['PHP_SELF']) == "index.php") {
+                    ?>
+                        <form action="index.php?typeSearch=<?php echo $typeSearch ?>" method="post" class="form-inline my-2 my-lg-0">
+                            <div class="inner-addon left-addon">
+                                <i class="glyphicon fas fa-search"></i>
+                                <input value="<?php echo isset($key) ? $key : "" ?>" name="key-search" required placeholder="nhập từ khóa" type="text" class="form-control input-search" />
                             </div>
-                        </div>
-                    </form>
+
+                            <button class="btn btn-search my-2 my-sm-0" name="b-search">
+                                Tìm kiếm
+                            </button>
+                            <div class="dropdown show">
+                                <a style="background-color: #FF7043; border-top-left-radius:0px ;" class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i style="color:white;" class="fas fa-cog"></i>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item <?php echo $typeSearch == "cong" ?  "active" : "" ?>" href="index.php?typeSearch=cong">Cống</a>
+                                    <a class="dropdown-item <?php echo $typeSearch == "trambom" ?  "active" : "" ?> " href="index.php?typeSearch=trambom">Trạm bơm</a>
+                                    <a class="dropdown-item <?php echo $typeSearch == "nmns" ?  "active" : "" ?>" href="index.php?typeSearch=nmns">Nhà máy nước sạch</a>
+                                    <a class="dropdown-item  <?php echo $typeSearch == "diennhanthai" ?  "active" : "" ?>" href="index.php?typeSearch=diennhanthai">Điểm Nhận Thải</a>
+                                    <a class="dropdown-item <?php echo $typeSearch == "diemxathai" ?  "active" : "" ?> " href="index.php?typeSearch=diemxathai">Điểm xả thải</a>
+                                </div>
+                            </div>
+                        </form>
+                    <?php
+                    }
+                    ?>
+
                     <?php
                     if (isset($_SESSION['user'])) {
                     ?>
