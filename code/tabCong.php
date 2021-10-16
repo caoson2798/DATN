@@ -39,7 +39,7 @@
                         $endPage =  $_GET['sNext'] + 9;
                     }
                     // $endPage = ($_GET['sNext'] + 9) > $total_page ? $total_page : $_GET['sNext'] + 9 ;
-                    echo $beginPage;
+                    // echo $beginPage;
                 } else {
                     $beginPage = 1;
                     $endPage = 10;
@@ -90,7 +90,7 @@
                 <li class="page-item <?php if (!isset($_GET['sNext']) || $beginPage == 1)
                                             echo "disabled";
                                         else echo "" ?>">
-                    <a class="page-link" href="tabCong.php?sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
+                    <a class="page-link" href="tabCong.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
                 </li>
                 <?php
                 for ($i = $beginPage; $i <= $endPage; $i++) {
@@ -142,7 +142,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-                
+
                 </div>
 
             </div>
