@@ -29,12 +29,10 @@ if (isset($_POST['btn_update'])) {
 
 <body>
     <div style="position: relative;" class="container">
-        <div class="col-8">
-            <h3>Dữ Liệu Cống</h5>
-        </div>
+        <h3 class="my-3">Dữ liệu Trạm bơm</h3>
         <div class="mx-5 my-2" style="position: absolute; top:0; right: 0;">
             <form action="export.php" method="POST" class="pull-right">
-                <button class="btn btn-primary export">
+                <button  class="btn btn-primary export" >
                     <i class="fas fa-download"></i>
                     <labe class="font-weight-bold" for="">Xuất excel</label>
                 </button>
@@ -58,7 +56,7 @@ if (isset($_POST['btn_update'])) {
 
 
                 //b1: tim tong so ban ghi
-                $alldata = getAllData();
+                $alldata = getAllTramBom();
                 $total = pg_num_rows($alldata);
 
                 // b2: Tim current page
@@ -96,7 +94,7 @@ if (isset($_POST['btn_update'])) {
                 $Previous = $current_page - 1;
                 $Next = $current_page + 1;
 
-                $dataPage = getDataLimit($limit, $start);
+                $dataPage = getDataLimitTramBom($limit, $start);
                 $count = pg_num_rows($dataPage);
                 if ($count > 0) {
                     while ($row = pg_fetch_assoc($dataPage)) {
@@ -128,19 +126,19 @@ if (isset($_POST['btn_update'])) {
                 <li class="page-item <?php if (!isset($_GET['sNext']) || $beginPage == 1)
                                             echo "disabled";
                                         else echo "" ?>">
-                    <a class="page-link" href="tabCong.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
+                    <a class="page-link" href="tabTramBom.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
                 </li>
                 <?php
                 for ($i = $beginPage; $i <= $endPage; $i++) {
                 ?>
-                    <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabCong.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
+                    <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabTramBom.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
                 <?php
                 }
                 ?>
                 <li class="page-item  <?php if (isset($_GET['sNext']) && $_GET['sNext'] + 9 > $total_page)
                                             echo "disabled";
                                         else echo "" ?> ">
-                    <a class="page-link" href="tabCong.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
+                    <a class="page-link" href="tabTramBom.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
                 </li>
             </ul>
         </nav>

@@ -88,8 +88,8 @@ if (isset($_POST['b-search'])) {
                                     Dữ liệu
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="tabCong.php?tabdt=cong">Cống</a>
-                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Trạm bơm</a>
+                                    <a class="dropdown-item" href="tabCong.php">Cống</a>
+                                    <a class="dropdown-item" href="tabTramBom.php">Trạm bơm</a>
                                     <a class="dropdown-item" href="tabCong.php?tabdt=">Kênh</a>
                                     <a class="dropdown-item" href="tabCong.php?tabdt=">Đê</a>
                                     <a class="dropdown-item" href="tabCong.php?tabdt=">Nhà máy nước sạch</a>
