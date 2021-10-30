@@ -6,6 +6,7 @@ require "database/nmns.php";
 require "database/trambom.php";
 require "database/diemnhanthai.php";
 require "database/diemxathai.php";
+require "database/kenh.php";
 
 
 if (isset($_GET['typeSearch'])) {
@@ -90,7 +91,7 @@ if (isset($_POST['b-search'])) {
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="tabCong.php">Cống</a>
                                     <a class="dropdown-item" href="tabTramBom.php">Trạm bơm</a>
-                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Kênh</a>
+                                    <a class="dropdown-item" href="tabKenh.php">Kênh</a>
                                     <a class="dropdown-item" href="tabCong.php?tabdt=">Đê</a>
                                     <a class="dropdown-item" href="tabCong.php?tabdt=">Nhà máy nước sạch</a>
                                     <a class="dropdown-item" href="tabCong.php?tabdt=">Điểm nhận thải</a>

@@ -13,10 +13,12 @@ require("header.php");
 if (isset($_POST['btn_update'])) {
 
     $gid = $_POST['ma_id'];
-    $name = $_POST['ten_cong'];
-    $note = $_POST['ghi_chu'];
+    $name = $_POST['ten_kenh'];
+    $ketcau = $_POST['ket_cau'];
+    $cqql = $_POST['cqql'];
+    $chieudai = $_POST['shape_leng'];
 
-    $resultUpdate = updateNote($gid, $note);
+    $resultUpdate = updateKenh($gid, $ketcau,$chieudai,$cqql);
     // if($resultUpdate){
     //     echo "ok nhe";
     // }else{
@@ -29,7 +31,7 @@ if (isset($_POST['btn_update'])) {
 
 <body>
     <div style="position: relative;" class="container">
-        <h3 class="my-3">Dữ liệu Trạm bơm</h3>
+        <h3 class="my-3">Dữ liệu Kênh</h3>
         <div class="mx-5 my-2" style="position: absolute; top:0; right: 0;">
             <form action="export.php" method="POST" class="pull-right">
                 <button  class="btn btn-primary export" >
@@ -44,10 +46,10 @@ if (isset($_POST['btn_update'])) {
             <thead>
                 <tr>
                     <th scope="col">gid</th>
-                    <th scope="col">Tên cống</th>
-                    <th scope="col">Hệ thống</th>
-
-
+                    <th scope="col">Tên kênh</th>
+                    <th scope="col">Kết cấu</th>
+                    <th scope="col">Cơ quan quản lý</th>
+                    <th scope="col">Chiều dài kênh</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +58,7 @@ if (isset($_POST['btn_update'])) {
 
 
                 //b1: tim tong so ban ghi
-                $alldata = getAllTramBom();
+                $alldata = getAllDataKenh();
                 $total = pg_num_rows($alldata);
 
                 // b2: Tim current page
@@ -94,19 +96,21 @@ if (isset($_POST['btn_update'])) {
                 $Previous = $current_page - 1;
                 $Next = $current_page + 1;
 
-                $dataPage = getDataLimitTramBom($limit, $start);
+                $dataPage = getDataLimitKenh($limit, $start);
                 $count = pg_num_rows($dataPage);
                 if ($count > 0) {
                     while ($row = pg_fetch_assoc($dataPage)) {
                 ?>
                         <tr>
                             <td scope="row"><?php echo $row['gid'] ?></th>
-                            <td><?php echo $row['name'] ?></td>
-                            <td><?php echo $row['he_thong'] ?></td>
+                            <td><?php echo $row['ten_kenh'] ?></td>
+                            <td><?php echo $row['ket_cau'] ?></td>
+                            <td><?php echo $row['cqql'] ?></td>
+                            <td><?php echo $row['shape_leng'] ?></td>
                             
                             <td>
                                 <button style="border-top-left-radius:0px ;" class="btn btn-success btn-detail" data-toggle="modal" data-target="#modalDetail">
-                                    <i style="color:white;" class="fas fa-info-circle"></i>
+                                    <i style="color:white;" class="fas fa-edit"></i>
                                 </button>
                             </td>
                         </tr>
@@ -126,19 +130,19 @@ if (isset($_POST['btn_update'])) {
                 <li class="page-item <?php if (!isset($_GET['sNext']) || $beginPage == 1)
                                             echo "disabled";
                                         else echo "" ?>">
-                    <a class="page-link" href="tabTramBom.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
+                    <a class="page-link" href="tabKenh.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
                 </li>
                 <?php
                 for ($i = $beginPage; $i <= $endPage; $i++) {
                 ?>
-                    <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabTramBom.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
+                    <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabKenh.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
                 <?php
                 }
                 ?>
                 <li class="page-item  <?php if (isset($_GET['sNext']) && $_GET['sNext'] + 9 > $total_page)
                                             echo "disabled";
                                         else echo "" ?> ">
-                    <a class="page-link" href="tabTramBom.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
+                    <a class="page-link" href="tabKenh.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
                 </li>
             </ul>
         </nav>
@@ -165,19 +169,31 @@ if (isset($_POST['btn_update'])) {
                         </div>
 
                         <div class="form-group">
-                            <label>Tên cống</label>
-                            <input readonly type="text" class="form-control" name="ten_cong" id="name" placeholder="Enter leng">
+                            <label>Tên kênh</label>
+                            <input readonly type="text" class="form-control" name="ten_kenh" id="name" placeholder="Enter leng">
                         </div>
 
                         <div class="form-group">
-                            <label>Hệ thống</label>
-                            <input readonly type="text" class="form-control" name="ghi_chu" id="note" placeholder="Enter area">
+                            <label>Kết cấu</label>
+                            <input type="text" class="form-control" name="ket_cau" id="ketcau" placeholder="Enter leng">
                         </div>
+
+                        <div class="form-group">
+                            <label>Cơ quan quản lý</label>
+                            <input  type="text" class="form-control" name="cqql" id="cqql" placeholder="Enter leng">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Chiều dài</label>
+                            <input  type="text" class="form-control" name="shape_leng" id="shape_leng" placeholder="Enter leng">
+                        </div>
+
+                       
 
                     </div>
 
                     <div class="modal-footer">
-                        <!-- <input readonly type="submit" value="Sửa" name="btn_update" class="btn btn-primary"> -->
+                        <input  type="submit" value="Sửa" name="btn_update" class="btn btn-primary">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
 
                     </div>
@@ -199,7 +215,10 @@ if (isset($_POST['btn_update'])) {
 
                     $('#gid').val(data[0]);
                     $('#name').val(data[1]);
-                    $('#note').val(data[2]);
+                    $('#ketcau').val(data[2]);
+                    $('#cqql').val(data[3]);
+                    $('#shape_leng').val(data[4]);
+
 
                 });
             });
