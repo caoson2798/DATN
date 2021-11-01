@@ -79,7 +79,7 @@ if (isset($_POST['b-search'])) {
                     </a>
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link text-light" href="#">Giới thiệu</a>
+                            <a class="nav-link text-light" href="gioithieu.php">Giới thiệu</a>
                         </li>
                         <?php
                         if (isset($_SESSION['user'])) {
@@ -92,8 +92,7 @@ if (isset($_POST['b-search'])) {
                                     <a class="dropdown-item" href="tabCong.php">Cống</a>
                                     <a class="dropdown-item" href="tabTramBom.php">Trạm bơm</a>
                                     <a class="dropdown-item" href="tabKenh.php">Kênh</a>
-                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Đê</a>
-                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Nhà máy nước sạch</a>
+                                    <a class="dropdown-item" href="tabNMNS.php">Nhà máy nước sạch</a>
                                     <a class="dropdown-item" href="tabCong.php?tabdt=">Điểm nhận thải</a>
                                     <a class="dropdown-item" href="tabCong.php?tabdt=">Điểm xả thải</a>
                                 </div>

@@ -10,3 +10,25 @@ function searchByNmn($key)
     $result = pg_query($dbconn, $sql);
     return $result;
 }
+function getAllDataNMNS()
+{
+    require("conn.php");
+    $sql = "SELECT * from nha_may_nnuoc_sacch_point";
+    $result = pg_query($dbconn, $sql);
+    return $result;
+}
+function getDataLimitNMNS($limit, $start)
+{
+    require("conn.php");
+    $sql = "SELECT * FROM nha_may_nnuoc_sacch_point ORDER BY gid LIMIT $limit OFFSET $start";
+    $result = pg_query($dbconn, $sql);
+    return $result;
+}
+function updateNMC($gid, $ten_hso,$dia_chi,$tt_hd,$dvi_qly)
+{
+    require("conn.php");
+    $sql = "UPDATE kenh_polyline SET ket_cau=N'$ketcau',chieu_dai='$chieudai',cqql=N'$cqql' WHERE gid='$gid'";
+    // echo $sql;
+    $result = pg_query($dbconn, $sql);
+    return $result;
+}
