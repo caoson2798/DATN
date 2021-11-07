@@ -10,22 +10,40 @@
 //     header("location:login.php");
 // }
 require("header.php");
-// if (isset($_POST['btn_update'])) {
+if (isset($_POST['btn_update'])) {
 
-//     $gid = $_POST['ma_id'];
-//     $name = $_POST['ten_kenh'];
-//     $ketcau = $_POST['ket_cau'];
-//     $cqql = $_POST['cqql'];
-//     $chieudai = $_POST['shape_leng'];
+    $gid = $_POST['ma_id'];
+    $ten_hso = $_POST['ten_hso'];
+    $diachi = $_POST['dia_chi'];
+  
+    $dvi_qly = $_POST['dvi_qly'];
+    $status = $_POST['status'];
+    $vung_pvu = $_POST['vung_pvu'];
+    $tt_hoatdong = "";
+    switch ($status) {
+        case "1":
+            $tt_hoatdong = "Tốt";
+            break;
+        case "2":
+            $tt_hoatdong = "Bình thường";
+            break;
+        case "3":
+            $tt_hoatdong = "HĐ Cầm chừng";
+            break;
+        case "4":
+            $tt_hoatdong = "Dừng hoạt động";
+            break;
+    }
 
-//     $resultUpdate = updateKenh($gid, $ketcau,$chieudai,$cqql);
-//     // if($resultUpdate){
-//     //     echo "ok nhe";
-//     // }else{
-//     //     echo "eo ok";
-//     // }
 
-// }
+    $resultUpdate = updateNMC($gid, $ten_hso,$diachi,$tt_hoatdong,$dvi_qly,$vung_pvu);
+    // if($resultUpdate){
+    //     echo "ok nhe";
+    // }else{
+    //     echo "eo ok";
+    // }
+
+}
 ?>
 
 
@@ -109,6 +127,7 @@ require("header.php");
                             <td><?php echo $row['ten_hso'] !== null ? $row['ten_hso'] : "chưa có dữ liệu" ?></td>
                             <td><?php echo $row['dia_chi'] ?></td>
                             <td><?php echo $row['dvi_qly'] ?></td>
+                            <td hidden><?php echo $row['vung_pvu'] !== null ? $row['vung_pvu'] : "Chưa có dữ liệu"  ?></td>
                             <td class="d-flex justify-content-center font-italic"><?php echo $row['tt_hdong'] ?></td>
 
                             <td>
@@ -172,23 +191,37 @@ require("header.php");
                         </div>
 
                         <div class="form-group">
-                            <label>Tên kênh</label>
+                            <label>Tên nhà máy nước</label>
                             <input readonly type="text" class="form-control" name="ten_nmn" id="ten_nmn" placeholder="Enter leng">
                         </div>
 
                         <div class="form-group">
-                            <label>Kết cấu</label>
+                            <label>Tên hồ sơ</label>
                             <input type="text" class="form-control" name="ten_hso" id="ten_hso" placeholder="Enter leng">
                         </div>
 
                         <div class="form-group">
-                            <label>Cơ quan quản lý</label>
-                            <input type="text" class="form-control" name="cqql" id="dia_chi" placeholder="Enter leng">
+                            <label>Địa chỉ</label>
+                            <input type="text" class="form-control" name="dia_chi" id="dia_chi" placeholder="Enter leng">
                         </div>
 
                         <div class="form-group">
-                            <label>Chiều dài</label>
-                            <input type="text" class="form-control" name="shape_leng" id="dvi_qly" placeholder="Enter leng">
+                            <label>Đơn vị quản lý</label>
+                            <input type="text" class="form-control" name="dvi_qly" id="dvi_qly" placeholder="Enter leng">
+                        </div>
+                        <div class="form-group">
+                            <label>Trạng thái hoạt động</label>
+                            <select class="w-100 btn btn-secondary" name="status" id="status">
+                                <option value="1">Tốt</option>
+                                <option value="2">Bình thường</option>
+                                <option value="3">HĐ Cầm chừng</option>
+                                <option value="4">Dừng hoạt động</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vùng phục vụ</label>
+                            <textarea class="w-100" rows="4" cols="50" name="vung_pvu" id="vung_pvu" placeholder="Enter leng"></textarea>
                         </div>
 
 
@@ -214,15 +247,26 @@ require("header.php");
                         return $(this).text();
                     }).get();
 
-                    console.log(data);
+                    console.log(data[6]);
 
                     $('#gid').val(data[0]);
                     $('#ten_nmn').val(data[1]);
                     $('#ten_hso').val(data[2]);
                     $('#dia_chi').val(data[3]);
                     $('#dvi_qly').val(data[4]);
+                    $('#vung_pvu').val(data[5]);
 
+                    $("select option").each(function() {
+                        if ($(this).text() == data[6])
+                            $(this).attr("selected", "selected");
+                    });
 
+                    // $("#status").change(function() {
+                    //     var status = this.value;
+                    //     // alert(status);
+                    //     if (status == "1")
+                    //         alert("aloo");
+                    // });
                 });
             });
         </script>

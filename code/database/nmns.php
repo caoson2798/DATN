@@ -24,10 +24,10 @@ function getDataLimitNMNS($limit, $start)
     $result = pg_query($dbconn, $sql);
     return $result;
 }
-function updateNMC($gid, $ten_hso,$dia_chi,$tt_hd,$dvi_qly)
+function updateNMC($gid, $ten_hso, $dia_chi, $tt_hd, $dvi_qly, $vung_pvu)
 {
     require("conn.php");
-    $sql = "UPDATE kenh_polyline SET ket_cau=N'$ketcau',chieu_dai='$chieudai',cqql=N'$cqql' WHERE gid='$gid'";
+    $sql = "UPDATE nha_may_nnuoc_sacch_point SET dvi_qly=N'$dvi_qly', dia_chi=N'$dia_chi', tt_hdong=N'$tt_hd',  ten_hso=N'$ten_hso',vung_pvu=N'$vung_pvu' WHERE gid='$gid'";
     // echo $sql;
     $result = pg_query($dbconn, $sql);
     return $result;
