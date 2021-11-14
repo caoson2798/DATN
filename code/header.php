@@ -94,7 +94,7 @@ if (isset($_POST['b-search'])) {
                                     <a class="dropdown-item" href="tabKenh.php">Kênh</a>
                                     <a class="dropdown-item" href="tabNMNS.php">Nhà máy nước sạch</a>
                                     <a class="dropdown-item" href="tabDiemNhanThai.php">Điểm nhận thải</a>
-                                    <a class="dropdown-item" href="tabCong.php?tabdt=">Điểm xả thải</a>
+                                    <a class="dropdown-item" href="tabDiemXaThai.php">Điểm xả thải</a>
                                 </div>
                             </li>
                             <li class="nav-item">

@@ -13,10 +13,16 @@ require("header.php");
 if (isset($_POST['btn_update'])) {
 
     $gid = $_POST['ma_id'];
-    $name = $_POST['ten_cong'];
-    $note = $_POST['ghi_chu'];
+    $diachi = $_POST['dia_chi'];
+    $thon = $_POST['thon'];
+    $kenhNhan = $_POST['kenh_nhan'];
+    $loaiKenh = $_POST['loai_kenh'];
+    $nganhsx = $_POST['nganh_sx'];
+    $sogp = $_POST['so_gp'];
+    $sdt = $_POST['sdt'];
+    
 
-    $resultUpdate = updateNote($gid, $note);
+    $resultUpdate = updateDiemNhanThai($gid,$diachi,$thon,$kenhNhan,$loaiKenh,$nganhsx,$sogp,$sdt);
     // if($resultUpdate){
     //     echo "ok nhe";
     // }else{
@@ -29,7 +35,7 @@ if (isset($_POST['btn_update'])) {
 
 <body>
     <div style="position: relative;" class="container">
-        <h3 class="my-3">Dữ liệu Trạm bơm</h3>
+        <h3 class="my-3">Dữ liệu Điểm nhận thải</h3>
         <div class="mx-5 my-2" style="position: absolute; top:0; right: 0;">
             <form action="export.php" method="POST" class="pull-right">
                 <button class="btn btn-primary export">
@@ -210,10 +216,10 @@ if (isset($_POST['btn_update'])) {
 
                         <div class="form-group">
                             <label>Ngày cấp</label>
-                            <input type="text" class="form-control" name="ngay_cap" id="ngay_cap" placeholder="Enter area">
+                            <input readonly type="text" class="form-control" name="ngay_cap" id="ngay_cap" placeholder="Enter area">
                         </div>
                         <div class="form-group">
-                            <label>sô điện thoại</label>
+                            <label>Số điện thoại</label>
                             <input type="text" class="form-control" name="sdt" id="sdt" placeholder="Enter area">
                         </div>
 

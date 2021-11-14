@@ -18,7 +18,7 @@ if (isset($_POST['btn_update'])) {
     $cqql = $_POST['cqql'];
     $chieudai = $_POST['shape_leng'];
 
-    $resultUpdate = updateKenh($gid, $ketcau,$chieudai,$cqql);
+    $resultUpdate = updateKenh($gid, $ketcau, $chieudai, $cqql);
     // if($resultUpdate){
     //     echo "ok nhe";
     // }else{
@@ -31,16 +31,22 @@ if (isset($_POST['btn_update'])) {
 
 <body>
     <div style="position: relative;" class="container">
-        <h3 class="my-3">Dữ liệu Kênh</h3>
-        <div class="mx-5 my-2" style="position: absolute; top:0; right: 0;">
-            <form action="export.php" method="POST" class="pull-right">
-                <button  class="btn btn-primary export" >
-                    <i class="fas fa-download"></i>
-                    <labe class="font-weight-bold" for="">Xuất excel</label>
-                </button>
+        <div class="d-flex flex-row w-100">
+            <h3 class="my-3 w-100">Dữ liệu Kênh</h3>
+            <div class=" my-2 w-100">
+                <form action="export.php" method="POST" class="pull-right form-inline">
+                    <div class="inner-addon left-addon">
+                        <i class="glyphicon fas fa-search"></i>
+                        <input value="<?php echo isset($key) ? $key : "" ?>" name="key-search" required placeholder="nhập từ khóa" type="text" class="form-control input-search" />
+                    </div>
 
-                <!-- <input type="submit" name="export_dam" class="btn btn-primary export" value="Xuất excel"> -->
-            </form>
+                    <button class="btn btn-search my-2 " name="b-search">
+                        Tìm kiếm
+                    </button>
+
+                    <!-- <input type="submit" name="export_dam" class="btn btn-primary export" value="Xuất excel"> -->
+                </form>
+            </div>
         </div>
         <table class="table table-striped">
             <thead>
@@ -107,7 +113,7 @@ if (isset($_POST['btn_update'])) {
                             <td><?php echo $row['ket_cau'] ?></td>
                             <td><?php echo $row['cqql'] ?></td>
                             <td><?php echo $row['shape_leng'] ?></td>
-                            
+
                             <td>
                                 <button style="border-top-left-radius:0px ;" class="btn btn-success btn-detail" data-toggle="modal" data-target="#modalDetail">
                                     <i style="color:white;" class="fas fa-edit"></i>
@@ -180,20 +186,20 @@ if (isset($_POST['btn_update'])) {
 
                         <div class="form-group">
                             <label>Cơ quan quản lý</label>
-                            <input  type="text" class="form-control" name="cqql" id="cqql" placeholder="Enter leng">
+                            <input type="text" class="form-control" name="cqql" id="cqql" placeholder="Enter leng">
                         </div>
 
                         <div class="form-group">
                             <label>Chiều dài</label>
-                            <input  type="text" class="form-control" name="shape_leng" id="shape_leng" placeholder="Enter leng">
+                            <input type="text" class="form-control" name="shape_leng" id="shape_leng" placeholder="Enter leng">
                         </div>
 
-                       
+
 
                     </div>
 
                     <div class="modal-footer">
-                        <input  type="submit" value="Sửa" name="btn_update" class="btn btn-primary">
+                        <input type="submit" value="Sửa" name="btn_update" class="btn btn-primary">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
 
                     </div>

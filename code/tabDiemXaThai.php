@@ -13,30 +13,16 @@ require("header.php");
 if (isset($_POST['btn_update'])) {
 
     $gid = $_POST['ma_id'];
-    $ten_hso = $_POST['ten_hso'];
     $diachi = $_POST['dia_chi'];
-  
-    $dvi_qly = $_POST['dvi_qly'];
-    $status = $_POST['status'];
-    $vung_pvu = $_POST['vung_pvu'];
-    $tt_hoatdong = "";
-    switch ($status) {
-        case "1":
-            $tt_hoatdong = "Tốt";
-            break;
-        case "2":
-            $tt_hoatdong = "Bình thường";
-            break;
-        case "3":
-            $tt_hoatdong = "HĐ Cầm chừng";
-            break;
-        case "4":
-            $tt_hoatdong = "Dừng hoạt động";
-            break;
-    }
+    $thon = $_POST['thon'];
+    $kenhNhan = $_POST['kenh_nhan'];
+    $loaiKenh = $_POST['loai_kenh'];
+    $nganhsx = $_POST['nganh_sx'];
+    $sogp = $_POST['so_gp'];
+    $sdt = $_POST['sdt'];
+    
 
-
-    $resultUpdate = updateNMC($gid, $ten_hso,$diachi,$tt_hoatdong,$dvi_qly,$vung_pvu);
+    $resultUpdate = updateDiemNhanThai($gid,$diachi,$thon,$kenhNhan,$loaiKenh,$nganhsx,$sogp,$sdt);
     // if($resultUpdate){
     //     echo "ok nhe";
     // }else{
@@ -47,9 +33,9 @@ if (isset($_POST['btn_update'])) {
 ?>
 
 
-<body style="overflow-y: scroll;">
+<body>
     <div style="position: relative;" class="container">
-        <h3 class="my-3">Dữ liệu nhà máy nước sạch</h3>
+        <h3 class="my-3">Dữ liệu Điểm Xả thải</h3>
         <div class="mx-5 my-2" style="position: absolute; top:0; right: 0;">
             <form action="export.php" method="POST" class="pull-right">
                 <button class="btn btn-primary export">
@@ -64,11 +50,13 @@ if (isset($_POST['btn_update'])) {
             <thead>
                 <tr>
                     <th scope="col">gid</th>
-                    <th scope="col">Tên NMN</th>
-                    <th scope="col">Tên hồ sơ</th>
+                    <th scope="col">Tên điểm nhận thải</th>
                     <th scope="col">Địa chỉ</th>
-                    <th scope="col">Đơn vị quản lý</th>
-                    <th scope="col">Trạng thái hoạt động</th>
+                    <th scope="col">Thôn</th>
+                    <th scope="col">Kênh nhận</th>
+                    <th scope="col">Loại kênh</th>
+                    <th scope="col">Số điện thoại</th>
+
 
                 </tr>
             </thead>
@@ -78,7 +66,7 @@ if (isset($_POST['btn_update'])) {
 
 
                 //b1: tim tong so ban ghi
-                $alldata = getAllDataNMNS();
+                $alldata = getAllDataDiemXaThai();
                 $total = pg_num_rows($alldata);
 
                 // b2: Tim current page
@@ -116,19 +104,22 @@ if (isset($_POST['btn_update'])) {
                 $Previous = $current_page - 1;
                 $Next = $current_page + 1;
 
-                $dataPage = getDataLimitNMNS($limit, $start);
+                $dataPage = getDataLimitDiemXaThai($limit, $start);
                 $count = pg_num_rows($dataPage);
                 if ($count > 0) {
                     while ($row = pg_fetch_assoc($dataPage)) {
                 ?>
                         <tr>
                             <td scope="row"><?php echo $row['gid'] ?></th>
-                            <td><?php echo $row['ten_nmn'] ?></td>
-                            <td><?php echo $row['ten_hso'] !== null ? $row['ten_hso'] : "chưa có dữ liệu" ?></td>
-                            <td><?php echo $row['dia_chi'] ?></td>
-                            <td><?php echo $row['dvi_qly'] ?></td>
-                            <td hidden><?php echo $row['vung_pvu'] !== null ? $row['vung_pvu'] : "Chưa có dữ liệu"  ?></td>
-                            <td class="d-flex justify-content-center font-italic"><?php echo $row['tt_hdong'] ?></td>
+                            <td><?php echo $row['tendn'] ?></td>
+                            <td><?php echo $row['diachi'] ?></td>
+                            <td><?php echo $row['thon'] ?></td>
+                            <td><?php echo $row['kenhnhan'] ?></td>
+                            <td><?php echo $row['loaikenh'] ?></td>
+                            <td hidden><?php echo $row['nganhsx'] ?></td>
+                            <td hidden><?php echo $row['sogp'] ?></td>
+                            <td hidden><?php echo $row['ngaycap'] ?></td>
+                            <td><?php echo $row['sdt'] ?></td>
 
                             <td>
                                 <button style="border-top-left-radius:0px ;" class="btn btn-success btn-detail" data-toggle="modal" data-target="#modalDetail">
@@ -152,19 +143,19 @@ if (isset($_POST['btn_update'])) {
                 <li class="page-item <?php if (!isset($_GET['sNext']) || $beginPage == 1)
                                             echo "disabled";
                                         else echo "" ?>">
-                    <a class="page-link" href="tabNMNS.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
+                    <a class="page-link" href="tabDiemNhanThai.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
                 </li>
                 <?php
                 for ($i = $beginPage; $i <= $endPage; $i++) {
                 ?>
-                    <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabNMNS.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
+                    <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabDiemNhanThai.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
                 <?php
                 }
                 ?>
                 <li class="page-item  <?php if (isset($_GET['sNext']) && $_GET['sNext'] + 9 > $total_page)
                                             echo "disabled";
                                         else echo "" ?> ">
-                    <a class="page-link" href="tabNMNS.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
+                    <a class="page-link" href="tabDiemNhanThai.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
                 </li>
             </ul>
         </nav>
@@ -191,37 +182,45 @@ if (isset($_POST['btn_update'])) {
                         </div>
 
                         <div class="form-group">
-                            <label>Tên nhà máy nước</label>
-                            <input readonly type="text" class="form-control" name="ten_nmn" id="ten_nmn" placeholder="Enter leng">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Tên hồ sơ</label>
-                            <input type="text" class="form-control" name="ten_hso" id="ten_hso" placeholder="Enter leng">
+                            <label>Tên Điểm nhận thải</label>
+                            <input readonly type="text" class="form-control" name="ten_dnt" id="ten_dnt" placeholder="Enter leng">
                         </div>
 
                         <div class="form-group">
                             <label>Địa chỉ</label>
-                            <input type="text" class="form-control" name="dia_chi" id="dia_chi" placeholder="Enter leng">
+                            <input type="text" class="form-control" name="dia_chi" id="dia_chi" placeholder="Enter area">
+                        </div>
+                        <div class="form-group">
+                            <label>Thôn</label>
+                            <input type="text" class="form-control" name="thon" id="thon" placeholder="Enter area">
                         </div>
 
                         <div class="form-group">
-                            <label>Đơn vị quản lý</label>
-                            <input type="text" class="form-control" name="dvi_qly" id="dvi_qly" placeholder="Enter leng">
-                        </div>
-                        <div class="form-group">
-                            <label>Trạng thái hoạt động</label>
-                            <select class="w-100 btn btn-secondary" name="status" id="status">
-                                <option value="1">Tốt</option>
-                                <option value="2">Bình thường</option>
-                                <option value="3">HĐ Cầm chừng</option>
-                                <option value="4">Dừng hoạt động</option>
-                            </select>
+                            <label>Kênh nhận</label>
+                            <input type="text" class="form-control" name="kenh_nhan" id="kenh_nhan" placeholder="Enter leng">
                         </div>
 
                         <div class="form-group">
-                            <label>Vùng phục vụ</label>
-                            <textarea class="w-100" rows="4" cols="50" name="vung_pvu" id="vung_pvu" placeholder="Enter leng"></textarea>
+                            <label>Loại kênh</label>
+                            <input type="text" class="form-control" name="loai_kenh" id="loai_kenh" placeholder="Enter area">
+                        </div>
+                        <div class="form-group">
+                            <label>Ngành sản xuất</label>
+                            <input type="text" class="form-control" name="nganh_sx" id="nganh_sx" placeholder="Enter area">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số gp</label>
+                            <input type="text" class="form-control" name="so_gp" id="so_gp" placeholder="Enter leng">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ngày cấp</label>
+                            <input readonly type="text" class="form-control" name="ngay_cap" id="ngay_cap" placeholder="Enter area">
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            <input type="text" class="form-control" name="sdt" id="sdt" placeholder="Enter area">
                         </div>
 
 
@@ -229,7 +228,7 @@ if (isset($_POST['btn_update'])) {
                     </div>
 
                     <div class="modal-footer">
-                        <input type="submit" value="Sửa" name="btn_update" class="btn btn-primary">
+                        <input readonly type="submit" value="Sửa" name="btn_update" class="btn btn-primary">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
 
                     </div>
@@ -247,26 +246,19 @@ if (isset($_POST['btn_update'])) {
                         return $(this).text();
                     }).get();
 
-                    console.log(data[6]);
+                    console.log(data);
 
                     $('#gid').val(data[0]);
-                    $('#ten_nmn').val(data[1]);
-                    $('#ten_hso').val(data[2]);
-                    $('#dia_chi').val(data[3]);
-                    $('#dvi_qly').val(data[4]);
-                    $('#vung_pvu').val(data[5]);
+                    $('#ten_dnt').val(data[1]);
+                    $('#dia_chi').val(data[2]);
+                    $('#thon').val(data[3]);
+                    $('#kenh_nhan').val(data[4]);
+                    $('#loai_kenh').val(data[5]);
+                    $('#nganh_sx').val(data[6]);
+                    $('#so_gp').val(data[7]);
+                    $('#ngay_cap').val(data[8]);
+                    $('#sdt').val(data[9]);
 
-                    $("select option").each(function() {
-                        if ($(this).text() == data[6])
-                            $(this).attr("selected", "selected");
-                    });
-
-                    // $("#status").change(function() {
-                    //     var status = this.value;
-                    //     // alert(status);
-                    //     if (status == "1")
-                    //         alert("aloo");
-                    // });
                 });
             });
         </script>
