@@ -29,12 +29,14 @@ if (isset($_POST['btn_update'])) {
 ?>
 
 
-<body>
+<body  style="overflow-y: scroll;">
     <div style="position: relative;" class="container">
         <div class="d-flex flex-row w-100">
-            <h3 class="my-3 w-100">Dữ liệu Kênh</h3>
+            <a class="my-3 w-100" href="tabKenh.php">
+                <h3>Dữ liệu Kênh</h3>
+            </a>
             <div class=" my-2 w-100">
-                <form action="export.php" method="POST" class="pull-right form-inline">
+                <form method="POST" class="pull-right form-inline w-100 d-flex justify-content-center">
                     <div class="inner-addon left-addon">
                         <i class="glyphicon fas fa-search"></i>
                         <input value="<?php echo isset($key) ? $key : "" ?>" name="key-search" required placeholder="nhập từ khóa" type="text" class="form-control input-search" />
@@ -103,6 +105,15 @@ if (isset($_POST['btn_update'])) {
                 $Next = $current_page + 1;
 
                 $dataPage = getDataLimitKenh($limit, $start);
+
+                if (!isset($_POST['b-search'])) {
+                    $dataPage = getDataLimitKenh($limit, $start);
+                } else {
+                    $key = $_POST['key-search'];
+
+                    $dataPage = searchKenh($key);
+                }
+
                 $count = pg_num_rows($dataPage);
                 if ($count > 0) {
                     while ($row = pg_fetch_assoc($dataPage)) {
@@ -136,20 +147,28 @@ if (isset($_POST['btn_update'])) {
                 <li class="page-item <?php if (!isset($_GET['sNext']) || $beginPage == 1)
                                             echo "disabled";
                                         else echo "" ?>">
+                    <?php 
+                        if (!isset($_POST['b-search'])){
+                    ?>
                     <a class="page-link" href="tabKenh.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
+                    <?php }?>
                 </li>
                 <?php
-                for ($i = $beginPage; $i <= $endPage; $i++) {
+                if (!isset($_POST['b-search'])) {
+                    for ($i = $beginPage; $i <= $endPage; $i++) {
                 ?>
-                    <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabKenh.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
+                        <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabKenh.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
+                    <?php
+                    }
+                    ?>
+                    <li class="page-item  <?php if (isset($_GET['sNext']) && $_GET['sNext'] + 9 > $total_page)
+                                                echo "disabled";
+                                            else echo "" ?> ">
+                        <a class="page-link" href="tabKenh.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
+                    </li>
                 <?php
                 }
                 ?>
-                <li class="page-item  <?php if (isset($_GET['sNext']) && $_GET['sNext'] + 9 > $total_page)
-                                            echo "disabled";
-                                        else echo "" ?> ">
-                    <a class="page-link" href="tabKenh.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
-                </li>
             </ul>
         </nav>
     </div>

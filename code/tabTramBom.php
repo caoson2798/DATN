@@ -29,16 +29,25 @@ if (isset($_POST['btn_update'])) {
 
 <body>
     <div style="position: relative;" class="container">
-        <h3 class="my-3">Dữ liệu Trạm bơm</h3>
-        <div class="mx-5 my-2" style="position: absolute; top:0; right: 0;">
-            <form action="export.php" method="POST" class="pull-right">
-                <button  class="btn btn-primary export" >
-                    <i class="fas fa-download"></i>
-                    <labe class="font-weight-bold" for="">Xuất excel</label>
-                </button>
+       
+        <div class="d-flex flex-row w-100">
+            <a class="my-3 w-100" href="tabTramBom.php">
+                <h3>Dữ liệu Trạm bơm</h3>
+            </a>
+            <div class=" my-2 w-100">
+                <form method="POST" class="pull-right form-inline w-100 d-flex justify-content-center">
+                    <div class="inner-addon left-addon">
+                        <i class="glyphicon fas fa-search"></i>
+                        <input value="<?php echo isset($key) ? $key : "" ?>" name="key-search" required placeholder="nhập từ khóa" type="text" class="form-control input-search" />
+                    </div>
 
-                <!-- <input type="submit" name="export_dam" class="btn btn-primary export" value="Xuất excel"> -->
-            </form>
+                    <button class="btn btn-search my-2 " name="b-search">
+                        Tìm kiếm
+                    </button>
+
+                    <!-- <input type="submit" name="export_dam" class="btn btn-primary export" value="Xuất excel"> -->
+                </form>
+            </div>
         </div>
         <table class="table table-striped">
             <thead>
@@ -95,6 +104,15 @@ if (isset($_POST['btn_update'])) {
                 $Next = $current_page + 1;
 
                 $dataPage = getDataLimitTramBom($limit, $start);
+
+                
+                if (!isset($_POST['b-search'])) {
+                    $dataPage = getDataLimitTramBom($limit, $start);
+                } else {
+                    $key = $_POST['key-search'];
+
+                    $dataPage = searchByTramBom($key);
+                }
                 $count = pg_num_rows($dataPage);
                 if ($count > 0) {
                     while ($row = pg_fetch_assoc($dataPage)) {
@@ -103,7 +121,7 @@ if (isset($_POST['btn_update'])) {
                             <td scope="row"><?php echo $row['gid'] ?></th>
                             <td><?php echo $row['name'] ?></td>
                             <td><?php echo $row['he_thong'] ?></td>
-                            
+
                             <td>
                                 <button style="border-top-left-radius:0px ;" class="btn btn-success btn-detail" data-toggle="modal" data-target="#modalDetail">
                                     <i style="color:white;" class="fas fa-info-circle"></i>
@@ -122,24 +140,32 @@ if (isset($_POST['btn_update'])) {
         </table>
 
         <nav class="mt-3" aria-label="Page navigation example">
-            <ul class="pagination justify-content-end">
+        <ul class="pagination justify-content-end">
                 <li class="page-item <?php if (!isset($_GET['sNext']) || $beginPage == 1)
                                             echo "disabled";
                                         else echo "" ?>">
-                    <a class="page-link" href="tabTramBom.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
+                    <?php
+                    if (!isset($_POST['b-search'])) {
+                    ?>
+                        <a class="page-link" href="tabTramBom.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $_GET['sNext'] - 10 ?>" tabindex="-1">Previous</a>
+                    <?php } ?>
                 </li>
                 <?php
-                for ($i = $beginPage; $i <= $endPage; $i++) {
+                if (!isset($_POST['b-search'])) {
+                    for ($i = $beginPage; $i <= $endPage; $i++) {
                 ?>
-                    <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabTramBom.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
+                        <li class="page-item <?php echo $current_page == $i ? "active" : "" ?>"><a class="page-link" href="tabTramBom.php?page=<?php echo $i ?>&sNext=<?php echo isset($_GET['sNext']) ? $_GET['sNext'] : 1 ?>"><?php echo $i ?></a></li>
+                    <?php
+                    }
+                    ?>
+                    <li class="page-item  <?php if (isset($_GET['sNext']) && $_GET['sNext'] + 9 > $total_page)
+                                                echo "disabled";
+                                            else echo "" ?> ">
+                        <a class="page-link" href="tabTramBom.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
+                    </li>
                 <?php
                 }
                 ?>
-                <li class="page-item  <?php if (isset($_GET['sNext']) && $_GET['sNext'] + 9 > $total_page)
-                                            echo "disabled";
-                                        else echo "" ?> ">
-                    <a class="page-link" href="tabTramBom.php?page=<?php echo isset($_GET['page']) ? $_GET['page'] : 1 ?>&sNext=<?php echo $endPage + 1 ?>">Next</a>
-                </li>
             </ul>
         </nav>
     </div>

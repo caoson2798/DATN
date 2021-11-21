@@ -16,6 +16,14 @@ function getAllDataKenh()
     $result = pg_query($dbconn, $sql);
     return $result;
 }
+function searchKenh($key)
+{
+    require("conn.php");
+    $sql = "SELECT * from kenh_polyline Where UPPER(ten_kenh) Like UPPER('%$key%')";
+    $result = pg_query($dbconn, $sql);
+    return $result;
+}
+
 function getDataLimitKenh($limit, $start)
 {
     require("conn.php");
@@ -24,7 +32,7 @@ function getDataLimitKenh($limit, $start)
     return $result;
 }
 
-function updateKenh($gid, $ketcau,$chieudai,$cqql)
+function updateKenh($gid, $ketcau, $chieudai, $cqql)
 {
     require("conn.php");
     $sql = "UPDATE kenh_polyline SET ket_cau=N'$ketcau',chieu_dai='$chieudai',cqql=N'$cqql' WHERE gid='$gid'";
