@@ -38,7 +38,7 @@ if (isset($_POST['btn_update'])) {
         <h3 class="my-3">Dữ liệu Điểm nhận thải</h3>
         <div class="mx-5 my-2" style="position: absolute; top:0; right: 0;">
             <form action="export.php" method="POST" class="pull-right">
-                <button class="btn btn-primary export">
+                <button name="export_DNT" class="btn btn-primary export">
                     <i class="fas fa-download"></i>
                     <labe class="font-weight-bold" for="">Xuất excel</label>
                 </button>
