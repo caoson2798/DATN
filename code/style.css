@@ -1,8 +1,13 @@
-html, body{
-
+html,
+body {
   height: 100%;
   overflow: hidden;
   width: 100%;
+}
+ul li{
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
 }
 #mapid {
   height: 100%;
@@ -162,16 +167,60 @@ input:checked + .slider:before {
   flex: 1;
   overflow: hidden;
 }
-.my-row{
+.my-row {
   flex-wrap: nowrap !important;
 }
 
-.t-label{
+.t-label {
   text-overflow: ellipsis;
 }
-.line-style{
-    width: 95%;
-    height: 2px;
-    background-color: #cccc;
-    margin: 8px 5px;
+.line-style {
+  width: 95%;
+  height: 2px;
+  background-color: #cccc;
+  margin: 8px 5px;
+}
+
+.leaflet-verticalcenter {
+  /********************************************/
+  /* Same as .leaflet-top and .leaflet-bottom */
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+  /********************************************/
+  top: 8%;
+  transform: translateY(-50%);
+  padding-top: 10px;
+}
+
+.leaflet-verticalcenter .leaflet-control {
+  margin-bottom: 10px;
+}
+
+.parent_menu:hover .submenu {
+  display: block;
+  opacity: 1;
+  transform: ease-out 1s;
+  -moz-transform: ease-out 1s;
+  -webkit-transform: ease-out 1s;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  border-radius: 6px;
+}
+.submenu {
+  display: none;
+  background-color: white;
+}
+.parent_menu a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+.submenu li:hover{
+  background-color: blanchedalmond;
+  padding-left: 3px;
+  border-radius: 5px;
+  margin-top: 2px;
 }

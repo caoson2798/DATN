@@ -1,3 +1,5 @@
+
+
 var mymap = L.map("mapid", {
   zoomControl: true,
   maxZoom: 50,
@@ -6,6 +8,30 @@ var mymap = L.map("mapid", {
   [20.61142322792599, 106.38637028789354],
   [20.778631818033, 106.6135772544507],
 ]);
+
+function addControlPlaceholders(mymap) {
+  var corners = mymap._controlCorners,
+    l = 'leaflet-',
+    container = mymap._controlContainer;
+
+  function createCorner(vSide, hSide) {
+    var className = l + vSide + ' ' + l + hSide;
+
+    corners[vSide + hSide] = L.DomUtil.create('div', className, container);
+  }
+
+  createCorner('verticalcenter', 'left');
+  createCorner('verticalcenter', 'right');
+}
+addControlPlaceholders(mymap);
+
+// Change the position of the Zoom Control to a newly created placeholder.
+mymap.zoomControl.setPosition('verticalcenterright');
+
+// You can also put other controls in the same placeholder.
+// L.control.scale({
+//   position: 'verticalcenterright'
+// }).addTo(mymap);
 
 // ban do nen
 googleStreets = L.tileLayer(
