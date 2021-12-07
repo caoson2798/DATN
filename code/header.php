@@ -110,7 +110,7 @@ if (isset($_POST['b-search'])) {
                                     <div class="parent_menu dropdown-item">
                                         <a  href="javasrcipt;">Tình trạng công trình <i class="fas fa-angle-right pl-3"></i></a>
                                         <ul class="submenu px-3">
-                                            <li class="py-2"><a href="#"> Cống</a></li>
+                                            <li class="py-2"><a href="tabthongkeCong.php"> Cống</a></li>
                                             <li class="py-2"><a href="#"> Cống Dưới đê</a></li>
                                             <li class="py-2"><a href="#"> Trạm bơm</a></li>
                                             <li class="py-2"><a href="#"> Nhà máy nước sạch</a></li>
