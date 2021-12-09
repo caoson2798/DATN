@@ -17,36 +17,29 @@ require("header.php");
 <body>
     <?php
     // truy van tat ca ban ghi
-    $getAllDataCong = getAllData();
-    $getAllDataCongDuoiDe = getAllDataCongDuoiDe();
-    $getAllDataNMNS = getAllDataNMNS();
-    $getAllDataDiemNhanThai = getAllDataDiemNhanThai();
-    $getAllDataDiemXaThai = getAllDataDiemXaThai();
-    $getAllDataDe = getAllDataDe();
-
-    // lay ra so luong cua tat ca ban ghi
-    $countCong = pg_num_rows($getAllDataCong);
-    $countCongDuoiDe = pg_num_rows($getAllDataCongDuoiDe);
-    $countDataNMNS = pg_num_rows($getAllDataNMNS);
-    $countDiemNhanThai = pg_num_rows($getAllDataDiemNhanThai);
-    $countDiemXaThai = pg_num_rows($getAllDataDiemXaThai);
-    $countDe = pg_num_rows($getAllDataDe);
+    $result = thongKeTrangThaiHD();
+    $a=[];
+    while ($row = pg_fetch_assoc($result)){
+        array_push($a,$row['sl']);
+    }
+    // print_r($a);
 
     // echo($countDe);
 
     ?>
     <div class="container">
         <canvas id="myChart" style="width:100%;max-width:800px; margin: auto;"></canvas>
-        <p class="d-flex w-100 justify-content-center my-3 font-italic" style="font-size: 20px;">Tổng có tất cả 170 công trình cống</p>
+        <p class="d-flex w-100 justify-content-center my-3 font-italic" style="font-size: 20px;">Tổng có 35 nhà máy nước sạch</p>
     </div>
     <script>
-        var xValues = ["Tốt", "Trung bình", "Kém"];
-        var yValues = [50, 80, 40];
+        var xValues = ["Tốt", "Bình Thường", "Dừng hoạt động", "HĐ Cầm chừng"];
+        var yValues =  <?php echo json_encode($a); ?>;
         var barColors = [
+            "#b91d47",
             "#00aba9",
             "#2b5797",
-            "#b91d47",
-            
+            "#e8c3b9",
+           
         ];
 
         let myChart = document.getElementById('myChart').getContext('2d');
@@ -67,7 +60,7 @@ require("header.php");
             options: {
                 title: {
                     display: true,
-                    text: "Thống kê tình trạng công trình cống"
+                    text: "Thống kê trạng thái hoạt động của nhà máy nước sạch"
                 }
             }
         });

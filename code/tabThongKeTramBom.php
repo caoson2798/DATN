@@ -37,16 +37,17 @@ require("header.php");
     ?>
     <div class="container">
         <canvas id="myChart" style="width:100%;max-width:800px; margin: auto;"></canvas>
-        <p class="d-flex w-100 justify-content-center my-3 font-italic" style="font-size: 20px;">Tổng có tất cả 170 công trình cống</p>
+        <p class="d-flex w-100 justify-content-center my-3 font-italic" style="font-size: 20px;">Tổng có tất cả 162 trạm bơm</p>
     </div>
     <script>
         var xValues = ["Tốt", "Trung bình", "Kém"];
-        var yValues = [50, 80, 40];
+        var yValues = [30, 80, 52];
         var barColors = [
+            "#b91d47",
             "#00aba9",
             "#2b5797",
-            "#b91d47",
-            
+            "#e8c3b9",
+            "#1e7145"
         ];
 
         let myChart = document.getElementById('myChart').getContext('2d');
@@ -67,7 +68,7 @@ require("header.php");
             options: {
                 title: {
                     display: true,
-                    text: "Thống kê tình trạng công trình cống"
+                    text: "Thống kê tình trạng các trạm bơm"
                 }
             }
         });

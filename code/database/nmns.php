@@ -32,3 +32,10 @@ function updateNMC($gid, $ten_hso, $dia_chi, $tt_hd, $dvi_qly, $vung_pvu)
     $result = pg_query($dbconn, $sql);
     return $result;
 }
+function thongKeTrangThaiHD()
+{
+    require("conn.php");
+    $sql = "SELECT tt_hdong, count(tt_hdong) as sl from nha_may_nnuoc_sacch_point group by tt_hdong";
+    $result = pg_query($dbconn, $sql);
+    return $result;
+}

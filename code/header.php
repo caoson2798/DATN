@@ -108,12 +108,12 @@ if (isset($_POST['b-search'])) {
                                 <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="tabthongkeCongTrinh.php">Số lượng công trình</a>
                                     <div class="parent_menu dropdown-item">
-                                        <a  href="javasrcipt;">Tình trạng công trình <i class="fas fa-angle-right pl-3"></i></a>
+                                        <a  href="#">Tình trạng công trình <i class="fas fa-angle-right pl-3"></i></a>
                                         <ul class="submenu px-3">
                                             <li class="py-2"><a href="tabthongkeCong.php"> Cống</a></li>
                                             <li class="py-2"><a href="#"> Cống Dưới đê</a></li>
-                                            <li class="py-2"><a href="#"> Trạm bơm</a></li>
-                                            <li class="py-2"><a href="#"> Nhà máy nước sạch</a></li>
+                                            <li class="py-2"><a href="tabThongKeTramBom.php"> Trạm bơm</a></li>
+                                            <li class="py-2"><a href="tabThongKeNMNS.php"> Nhà máy nước sạch</a></li>
                                         </ul>
                                     </div>
                                 </div>
