@@ -56,7 +56,7 @@ if (isset($_POST["login"])) {
               <p class="login-card-description">Đăng nhập</p>
               <form method="POST">
                 <div class="form-group">
-                  <label for="email" class="sr-only">Email</label>
+                  <label for="email" class="sr-only">user</label>
                   <input required type="text" name="username" id="email" class="form-control" placeholder="Tài khoản">
                 </div>
                 <div class="form-group mb-4">

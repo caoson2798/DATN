@@ -27,7 +27,7 @@ if (isset($_POST['btn_update'])) {
 ?>
 
 
-<body>
+<body style="overflow-y: scroll;">
     <div style="position: relative;" class="container">
        
         <div class="d-flex flex-row w-100">
