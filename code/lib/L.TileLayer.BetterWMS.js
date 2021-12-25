@@ -84,6 +84,11 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
     var cqql = data.cqql;
     var ketCau = data.ket_cau;
     var chieuDai = data.shape_leng;
+    // de
+    var ten_de= data.ten_tuyen;
+    var loai_de= data.loai_de;
+    var cap_de = data.cap_de;
+    var chieu_dai_de= data.chieu_dai;
     // nha may nuoc
     var ngayCapNhat = data.cap_nhat;
     var cl_dky = data.cl_dky;
@@ -134,9 +139,10 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
     } else if (layer == "de_tw") {
       noidung += "<b>Thông tin chi tiết</b>";
       noidung += "<br>";
-      noidung += "<b>Tên: </b>" + ten + "<br>";
-      noidung += "<b>Kết cấu: </b>" + ketCau + "<br>";
-      noidung += "<b>Chiều dài: </b>" + chieuDai + "<br>";
+      noidung += "<b>Tên: </b>" + ten_de + "<br>";
+      noidung += "<b>Loại đê </b>" + loai_de + "<br>";
+      noidung += "<b>Cấp đê </b>" + cap_de + "<br>";
+      noidung += "<b>Chiều dài: </b>" + chieu_dai_de + "<br>";
     } else if (layer == "nha_may_nuoc_sach_point") {
       noidung += "<b>Thông tin chi tiết</b>";
       noidung += "<br>";

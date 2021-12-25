@@ -1,5 +1,3 @@
-
-
 var mymap = L.map("mapid", {
   zoomControl: true,
   maxZoom: 50,
@@ -11,22 +9,22 @@ var mymap = L.map("mapid", {
 
 function addControlPlaceholders(mymap) {
   var corners = mymap._controlCorners,
-    l = 'leaflet-',
+    l = "leaflet-",
     container = mymap._controlContainer;
 
   function createCorner(vSide, hSide) {
-    var className = l + vSide + ' ' + l + hSide;
+    var className = l + vSide + " " + l + hSide;
 
-    corners[vSide + hSide] = L.DomUtil.create('div', className, container);
+    corners[vSide + hSide] = L.DomUtil.create("div", className, container);
   }
 
-  createCorner('verticalcenter', 'left');
-  createCorner('verticalcenter', 'right');
+  createCorner("verticalcenter", "left");
+  createCorner("verticalcenter", "right");
 }
 addControlPlaceholders(mymap);
 
 // Change the position of the Zoom Control to a newly created placeholder.
-mymap.zoomControl.setPosition('verticalcenterright');
+mymap.zoomControl.setPosition("verticalcenterright");
 
 // You can also put other controls in the same placeholder.
 // L.control.scale({
@@ -173,6 +171,9 @@ function xulycheck(e) {
         // mymap.fitBounds(DiemXaThai1.getBounds());
         DiemXaThai.addTo(mymap);
         break;
+      case "chk-osm":
+        OSM.addTo(mymap);
+        break;
       default:
         alert("ko co j het tron a");
     }
@@ -202,6 +203,9 @@ function xulycheck(e) {
         break;
       case "chk-diemxathai":
         mymap.removeLayer(DiemXaThai);
+        break;
+      case "chk-osm":
+        mymap.removeLayer(OSM);
         break;
       default:
         alert("ko co j het tron a");

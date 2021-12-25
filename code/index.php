@@ -109,7 +109,7 @@ require('header.php');
         <div class="collapse" id="collapseExample1">
           <div>
             <label class="switch ml-5 my-3">
-              <input type="checkbox" checked />
+              <input id="chk-osm" type="checkbox" checked  />
               <span class="slider round"></span>
             </label>
             <span class="mx-2">OSM</span>
