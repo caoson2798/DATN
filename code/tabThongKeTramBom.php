@@ -36,7 +36,7 @@ require("header.php");
 
     ?>
     <div class="container">
-        <canvas id="myChart" style="width:100%;max-width:800px; margin: auto;"></canvas>
+        <canvas id="myChart" style="width:100%;max-width:600px; margin: auto;"></canvas>
         <p class="d-flex w-100 justify-content-center my-3 font-italic" style="font-size: 20px;">Tổng có tất cả 162 trạm bơm</p>
     </div>
     <script>

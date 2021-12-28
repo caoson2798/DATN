@@ -36,7 +36,7 @@ require("header.php");
 
     ?>
     <div class="container">
-        <canvas id="myChart" style="width:100%;max-width:800px; margin: auto;"></canvas>
+        <canvas id="myChart" style="width:100%;max-width:600px; margin: auto;"></canvas>
         <p class="d-flex w-100 justify-content-center my-3 font-italic" style="font-size: 20px;">Tổng có tất cả 170 công trình cống</p>
     </div>
     <script>
@@ -52,7 +52,7 @@ require("header.php");
         let myChart = document.getElementById('myChart').getContext('2d');
         // Global Options
         Chart.defaults.global.defaultFontFamily = 'Lato';
-        Chart.defaults.global.defaultFontSize = 25;
+        Chart.defaults.global.defaultFontSize = 20;
         Chart.defaults.global.defaultFontColor = '#777';
 
         new Chart("myChart", {
