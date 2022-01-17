@@ -37,11 +37,11 @@ require("header.php");
     ?>
     <div class="container">
         <canvas id="myChart" style="width:100%;max-width:600px; margin: auto;"></canvas>
-        <p class="d-flex w-100 justify-content-center my-3 font-italic" style="font-size: 20px;">Tổng có tất cả 170 công trình cống</p>
+        <p class="d-flex w-100 justify-content-center my-3 font-italic" style="font-size: 20px;">Tổng có tất cả 6821 công trình cống</p>
     </div>
     <script>
         var xValues = ["Tốt", "Trung bình", "Kém"];
-        var yValues = [50, 80, 40];
+        var yValues = [1500, 4300, 1021];
         var barColors = [
             "#00aba9",
             "#2b5797",

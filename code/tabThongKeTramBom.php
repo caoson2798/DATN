@@ -43,11 +43,10 @@ require("header.php");
         var xValues = ["Tốt", "Trung bình", "Kém"];
         var yValues = [30, 80, 52];
         var barColors = [
-            "#b91d47",
             "#00aba9",
+            "#b91d47",
             "#2b5797",
-            "#e8c3b9",
-            "#1e7145"
+            
         ];
 
         let myChart = document.getElementById('myChart').getContext('2d');
